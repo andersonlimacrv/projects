@@ -1,0 +1,61 @@
+.graficos_CEC {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 60px;
+}
+.grafico_comparativo_eficiencia_condensadores,
+.grafico_comparativo_eficiencia_condensadores_2 {
+  background-color: #262d47;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 1px 1px 5px black;
+  margin: 0px 5px;
+  padding: 10px;
+}
+.graficos_TBU_GEA_SA {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 25px;
+}
+.grafico_TBU_admissao_ar,
+.grafico_saturacao_ar,
+.grafico_ganho_energetico_ar {
+  background-color: #262d47;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 1px 1px 5px black;
+  margin: 0px 5px;
+  padding: 10px;
+}
+
+@media (max-width: 999px) {
+  .graficos_CEC {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px auto;
+  }
+  .grafico_comparativo_eficiencia_condensadores,
+  .grafico_comparativo_eficiencia_condensadores_2 {
+    margin: 5px;
+    padding: 10px;
+  }
+
+  .graficos_TBU_GEA_SA {
+    display: flex;
+    justify-content: center;
+    margin: 0px 10px 20px 10px;
+  }
+  .grafico_TBU_admissao_ar,
+  .grafico_saturacao_ar,
+  .grafico_ganho_energetico_ar {
+    margin: 5px;
+    padding: 10px auto;
+  }
+
+  .graficos_CEC,
+  .graficos_TBU_GEA_SA {
+    align-items: center;
+    flex-direction: column;
+  }
+}
