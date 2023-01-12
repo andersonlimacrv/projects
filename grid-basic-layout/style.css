@@ -1,0 +1,23 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+}
+.container {
+  min-height: 100vh;
+  background-color: darkgray;
+  display:grid;
+  grid-template-columns: 1fr 2fr 1fr; /* Coloca direção dos itens em comulas, a ajusta a visualização de 3 colunas respectivamente. */
+  /* OBS: aceita porcentagem, frame, e px  */
+  /* grid-template-columns:repeat(6,1fr); função repeat para todos os itens. */
+  gap:10px; /* gap: row-gap column-gap; ex: gap: 10px 20px; */
+  /* grid-template-rows: 1fr 2fr 1fr; Analogo ao columns */
+  grid-auto-rows: minmax(210px, 100%); /*apos esse valor, /* ativa scroll */
+}
+.item {
+  background-color: white;
+  border: 2px solid black;
+  font-size: 40px;
+  padding: 20px; /* Dando espaçamento do item para a div */
+}
