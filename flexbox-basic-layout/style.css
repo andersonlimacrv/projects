@@ -1,0 +1,66 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: darkgray;
+}
+.header {
+  flex-basis: 100%; /* Mesma função do width, mas necessário quando usamos grow e shrink */
+  background-color: white;
+  border: 2px solid black;
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+.paragraph {
+  font-size: 30px;
+}
+.mainContent {
+  display: flex;
+  flex-wrap: wrap;/*  Quebra de linha */
+  align-items: center; /* Alinhamento vertical, ops: strach não pode definir heigth */
+  justify-content: center; /* Alinhamento horizontal, obs: strach não pode definir weight */
+  align-content: center; /* Alinhamento vertical da visualização, substitui align-itens, com espaçamento analogo ao space-around */
+  padding: 10px;
+  gap: 10px; /* Espaçamento entre os flex itens */
+  flex: 1 0 auto;
+}
+.item {
+  flex-basis: 600px; /* Tamanho mínimo do flex item (weight), utilizado em conjunto com grow e shrink */
+  height: 500px;
+  border: 2px solid black;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.footer {
+  flex-basis: 100%;
+  border: 2px solid black;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.item1, .item6{
+  flex-grow: 1 ; /* O item irá ocupar maior parte da tela, 0= padrao, <1 pouco muda */
+}
+.item5{
+  flex-shrink: 2; /* Verificar se não está pra quebrar linha antes de atingir o tamanho */
+}
+.item3{
+  flex: 1 0 800px; /* 1=grow, 0=shrink e 200=basis (comando flex: grow, shrink, basis) */
+}
+.item6{
+  order:1; /* Coloca ordem em como aparecem os elementos, padrão = 0 */
+}
+.item2{
+  align-self: flex-start; /* Alinhamento do child - depende do flex direction column/row */
+}
