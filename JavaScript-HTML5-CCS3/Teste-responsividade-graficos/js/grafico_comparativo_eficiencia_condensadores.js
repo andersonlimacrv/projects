@@ -87,3 +87,4 @@ function drawAnnotations() {
   );
   chart.draw(data, options);
 }
+window.addEventListener("resize", drawAnnotations);

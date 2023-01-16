@@ -73,3 +73,4 @@ function drawAnnotations() {
       var chart = new google.visualization.ColumnChart(document.getElementById('grafico_saturacao_ar'));
       chart.draw(data, options);
     }
+    window.addEventListener("resize", drawAnnotations);

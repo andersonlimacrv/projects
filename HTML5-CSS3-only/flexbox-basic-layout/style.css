@@ -29,7 +29,7 @@
   align-content: center; /* Alinhamento vertical da visualização, substitui align-itens, com espaçamento analogo ao space-around */
   padding: 10px;
   gap: 10px; /* Espaçamento entre os flex itens */
-  flex: 1 0 auto;
+   
 }
 .item {
   flex-basis: 600px; /* Tamanho mínimo do flex item (weight), utilizado em conjunto com grow e shrink */

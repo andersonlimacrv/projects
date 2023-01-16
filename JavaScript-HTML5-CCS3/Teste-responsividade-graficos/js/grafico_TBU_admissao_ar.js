@@ -73,3 +73,5 @@ function drawAnnotations3() {
       var chart = new google.visualization.ColumnChart(document.getElementById('grafico_TBU_admissao_ar'));
       chart.draw(data3, options3);
     }
+    window.addEventListener("resize", drawAnnotations3);
+    
