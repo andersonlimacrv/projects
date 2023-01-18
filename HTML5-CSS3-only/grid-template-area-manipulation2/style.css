@@ -1,60 +1,77 @@
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+.grafico_condensadores {
+  background-color: #262d47;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 1px 1px 5px black;
 }
-.item {
-  background-color: white;
-  border: 2px solid black;
-  font-size: 30px;
-  padding: 10px;
-}
-.container {
-  background-color: darkgray;
-  min-height: 100vh;
+.graficos_eficiencia_comparativo {
   display: grid;
-  gap: 10px 15px;
-  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
   grid-auto-rows: minmax(
-    120px,
+    350px,
     auto
   ); /* minimo 120px de altura e maximo responsivo */
-  grid-template-areas:
-    "item1 item1 item1"
-    "item2 item2 item3"
-    "item2 item2 item4"
-    "item5 item5 item5"
-    "item5 item5 item5"
-    "item6 item7 item7"
-    "item8 item7 item7"
-    "item9 item9 item9";
-}
-.item1 {
-  grid-area: item1;
-}
-.item2 {
-  grid-area: item2;
-}
-.item3 {
-  grid-area: item3;
-}
-.item4 {
-  grid-area: item4;
-}
-.item5 {
-  grid-area: item5;
-}
-.item6 {
-  grid-area: item6;
-}
-.item7 {
-  grid-area: item7;
-}
-.item8 {
-  grid-area: item8;
-}
-.item9 {
-  grid-area: item9;
+  grid-template-areas: "grafico1 grafico2";
 }
 
+.graficos_adm_ganho_sat {
+  margin-top: 10px;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(
+    350px,
+    auto
+  ); /* minimo 120px de altura e maximo responsivo */
+  grid-template-areas: "grafico3 grafico4 grafico5";
+}
+
+.grafico1 {
+  grid-area: grafico1;
+  min-width: 600px;
+  padding: 20px;
+}
+.grafico2 {
+  grid-area: grafico2;
+  min-width: 600px;
+  padding: 20px;
+}
+.grafico3 {
+  grid-area: grafico3;
+  min-width: 320px;
+  padding: 20px;
+}
+.grafico4 {
+  grid-area: grafico4;
+  min-width: 320px;
+  padding: 20px;
+}
+.grafico5 {
+  grid-area: grafico5;
+  min-width: 320px;
+  padding: 20px;
+}
 /* grid-row e columns tem que respeitar os frames setados pelo grid-template-colums; */
+@media (max-width: 1279px) {
+  .graficos_eficiencia_comparativo {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 999px) {
+  .graficos_adm_ganho_sat {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media (max-width: 620px) {
+  .grafico1,
+  .grafico2,
+  .grafico3,
+  .grafico4,
+  .grafico5 {
+    min-width: 280px;
+  }
+}
+/*  options.vAxis.format = "decimal"; */

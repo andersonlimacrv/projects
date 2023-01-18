@@ -1,0 +1,54 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+
+}
+.grafico_comparativo_eficiencia_condensadores,
+.grafico_comparativo_eficiencia_condensadores_2,
+.grafico_TBU_admissao_ar,
+.grafico_saturacao_ar,
+.grafico_ganho_energetico_ar {
+  background-color: #262d47;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  box-shadow: 1px 1px 5px black;
+}
+.area_graficos{
+display:flex;
+}
+.grafico_comparativo_eficiencia_condensadores,
+.grafico_comparativo_eficiencia_condensadores_2,
+.grafico_TBU_admissao_ar,
+.grafico_ganho_energetico_ar,
+.grafico_saturacao_ar {
+  height: 350px;
+  width: auto;
+}
+.graficos_compatativos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.grafico1{
+  grid-area: grafico1;
+  min-width: 500px;
+}
+.grafico2 {
+  grid-area: grafico2;
+    min-width: 500px;
+}
+.grafico3 {
+  grid-area: grafico3;
+    min-width: 350px;
+}
+.grafico4 {
+  grid-area: grafico4;
+    min-width: 350px;
+}
+.grafico5 {
+  grid-area: grafico5;
+    min-width: 350px;
+}
+@media (max-width: 1280px) {
+}
