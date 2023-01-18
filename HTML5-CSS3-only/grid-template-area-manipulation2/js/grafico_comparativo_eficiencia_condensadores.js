@@ -3,7 +3,7 @@ google.charts.setOnLoadCallback(drawAnnotations);
 
 function drawAnnotations() {
   var data = google.visualization.arrayToDataTable([
-    ["Condensadores", "Nominal Corrida (kcal/h)", "Medida (kcal/h)"],
+    ["Condensadores", "Nominal", "Medida"],
     ["CD 1", 1052115, 923456],
     ["CD 2", 1186488, 1422971],
     ["CD 3", 885734, 388513],

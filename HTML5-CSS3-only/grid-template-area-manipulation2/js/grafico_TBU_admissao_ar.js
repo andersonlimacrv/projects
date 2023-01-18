@@ -5,7 +5,7 @@ function drawAnnotations3() {
   var data3 = google.visualization.arrayToDataTable([
     ["Condensadores", "TBU na entrada do Ar"],
     ["CD 1", 19],
-    ["CD 2", 17],
+    ["CD 2", 17],git s
     ["CD 3", 14],
     ["CD 4", 15],
     ["CD 5", 20],
@@ -22,6 +22,7 @@ function drawAnnotations3() {
   ]);
 
   var options3 = {
+    animation: { startup: true, easing: "linear", duration: 1000 },
     title: "TBU na Admissão do Ar",
     colors: ["#007AF7"],
     titleTextStyle: {
@@ -38,7 +39,7 @@ function drawAnnotations3() {
       fill: "none",
     },
     dataOpacity: 0.8,
-    bar: { groupWidth: "70%" },
+    bar: { groupWidth: "60%" },
     vAxis: {
       gridlines: {
         color: "#4F4F4F",

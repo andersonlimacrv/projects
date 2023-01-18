@@ -38,7 +38,7 @@ function drawAnnotations() {
       fill: "none",
     },
     dataOpacity: 0.9,
-    bar: { groupWidth: "70%" },
+    bar: { groupWidth: "60%" },
     vAxis: {
       gridlines: {
         color: "#4F4F4F",
