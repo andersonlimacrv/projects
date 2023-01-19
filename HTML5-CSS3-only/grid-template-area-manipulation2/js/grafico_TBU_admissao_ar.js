@@ -5,7 +5,7 @@ function drawAnnotations3() {
   var data3 = google.visualization.arrayToDataTable([
     ["Condensadores", "TBU na entrada do Ar"],
     ["CD 1", 19],
-    ["CD 2", 17],git s
+    ["CD 2", 17],
     ["CD 3", 14],
     ["CD 4", 15],
     ["CD 5", 20],
