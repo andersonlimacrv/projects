@@ -5,11 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
-    <title>Grid Layout - Grid-template-areas</title>
-    <script
-      type="text/javascript"
-      src="https://www.gstatic.com/charts/loader.js"
-    ></script>
+    <title>Grid Layout - Grid-template-areas - with chartjs</title>
+    <script src="path/to/chartjs/dist/chart.umd.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
   </head>
 
   <body>
@@ -28,7 +26,9 @@
         <div
           class="grafico_condensadores grafico3"
           id="grafico_TBU_admissao_ar"
-        ></div>
+        >
+          <canvas id="myChart" style="width: 100%; max-width: 600px"></canvas>
+        </div>
         <div
           class="grafico_condensadores grafico4"
           id="grafico_ganho_energetico_ar"
