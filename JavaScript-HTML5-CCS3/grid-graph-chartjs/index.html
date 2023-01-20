@@ -7,36 +7,35 @@
     <link rel="stylesheet" href="./style.css" />
     <title>Grid Layout - Grid-template-areas - with chartjs</title>
     <script src="path/to/chartjs/dist/chart.umd.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.0/chart.min.js"></script>
   </head>
 
   <body>
     <div class="area_graficos">
       <div class="graficos_eficiencia_comparativo">
-        <div
+        <canvas
           class="grafico_condensadores grafico1"
           id="grafico_comparativo_eficiencia_condensadores"
-        ></div>
-        <div
+        ></canvas>
+        <canvas
           class="grafico_condensadores grafico2"
           id="grafico_comparativo_eficiencia_condensadores_2"
-        ></div>
+        ></canvas>
       </div>
       <div class="graficos_adm_ganho_sat">
-        <div
+        <canvas
           class="grafico_condensadores grafico3"
           id="grafico_TBU_admissao_ar"
         >
-          <canvas id="myChart" style="width: 100%; max-width: 600px"></canvas>
-        </div>
-        <div
+        </canvas>
+        <canvas
           class="grafico_condensadores grafico4"
           id="grafico_ganho_energetico_ar"
-        ></div>
-        <div
+        ></canvas>
+        <canvas
           class="grafico_condensadores grafico5"
           id="grafico_saturacao_ar"
-        ></div>
+        ></canvas>
       </div>
     </div>
     <script
