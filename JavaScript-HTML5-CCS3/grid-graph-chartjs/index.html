@@ -5,66 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
-    <script
-      type="application/javascript"
-      src="js/grafico_TBU_admissao_ar.js"
-    ></script>
-    <title>Grid Layout - Grid-template-areas - with chartjs</title>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.0/chart.min.js"
-      integrity="sha512-qKyIokLnyh6oSnWsc5h21uwMAQtljqMZZT17CIMXuCQNIfFSFF4tJdMOaJHL9fQdJUANid6OB6DRR0zdHrbWAw=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    ></script>
-  </head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.0/chart.umd.min.js"></script>
 
+    
+    <title>Grid Layout - Grid-template-areas - with chartjs</title>
+  </head>
   <body>
     <div class="area_graficos">
       <div class="graficos_eficiencia_comparativo">
-        <canvas
-          class="grafico_condensadores grafico1"
-          id="grafico_comparativo_eficiencia_condensadores"
-        ></canvas>
-        <canvas
-          class="grafico_condensadores grafico2"
-          id="grafico_comparativo_eficiencia_condensadores_2"
-        ></canvas>
+        <canvas id="grafico_comparativo_eficiencia_condensadores" class="grafico_condensadores grafico1"></canvas>
+        <canvas id="grafico_comparativo_eficiencia_condensadores_2" class="grafico_condensadores grafico2"></canvas>
       </div>
       <div class="graficos_adm_ganho_sat">
-        <canvas
-          class="grafico_condensadores grafico3"
-          id="grafico_TBU_admissao_ar"
-        >
-        </canvas>
-        <canvas
-          class="grafico_condensadores grafico4"
-          id="grafico_ganho_energetico_ar"
-        ></canvas>
-        <canvas
-          class="grafico_condensadores grafico5"
-          id="grafico_saturacao_ar"
-        ></canvas>
+        <canvas id="grafico_TBU_admissao_ar" class="grafico_condensadores grafico3"></canvas>
+        <canvas id="grafico_ganho_energetico_ar" class="grafico_condensadores grafico4"></canvas>
+        <canvas id="grafico_saturacao_ar" class="grafico_condensadores grafico5"></canvas>
       </div>
     </div>
-    <script
-      type="application/javascript"
-      src="js/grafico_comparativo_eficiencia_condensadores.js"
-    ></script>
-    <script
-      type="application/javascript"
-      src="js/grafico_comparativo_eficiencia_condensadores_2.js"
-    ></script>
-    <script
-      type="application/javascript"
-      src="js/grafico_ganho_energetico_ar.js"
-    ></script>
-    <script
-      type="application/javascript"
-      src="js/grafico_saturacao_ar.js"
-    ></script>
-    <script
-      type="application/javascript"
-      src="js/grafico_TBU_admissao_ar.js"
-    ></script>
+    <script src="js/grafico_comparativo_eficiencia_condensadores.js"></script>
+    <script src="js/grafico_comparativo_eficiencia_condensadores_2.js"></script>
+    <script src="js/grafico_ganho_energetico_ar.js"></script>
+    <script src="js/grafico_saturacao_ar.js"></script>
+    <script src="js/grafico_TBU_admissao_ar.js"></script>
   </body>
 </html>

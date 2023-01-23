@@ -1,21 +1,24 @@
-const ctx = document.getElementById("grafico_TBU_admissao_ar");
+let ctx = document.getElementById("grafico_TBU_admissao_ar").getContext('2d');
 
-const labels = ["1", "2", "3", "4", "5", "6"];
+let labels = ["1", "2", "3", "4", "5"];
 
-const data = {
+let data = {
   labels,
   datasets: [
     {
-      data: [350, 200, 300, 400, 500],
-      label: "Nome do Gráfico",
+      data: [22, 33, 55, 44, 99],
+      data2: [11, 20,45, 55, 33],
+      label: "nome do gráfico",
     },
   ],
 };
-const config = {
+
+let config = {
   type: "bar",
   data,
   options: {
-    responsive: true,
+    resposive: true,
   },
 };
-const drawChart = new Chart(ctx, config);
+
+let myChart = new Chart(ctx, config);
