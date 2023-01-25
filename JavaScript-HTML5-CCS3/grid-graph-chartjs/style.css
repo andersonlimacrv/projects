@@ -30,27 +30,22 @@
 .grafico1 {
   grid-area: grafico1;
   min-width: 600px;
-  padding: 20px;
 }
 .grafico2 {
   grid-area: grafico2;
   min-width: 600px;
-  padding: 20px;
 }
 .grafico3 {
   grid-area: grafico3;
   min-width: 320px;
-  padding: 20px;
 }
 .grafico4 {
   grid-area: grafico4;
   min-width: 320px;
-  padding: 20px;
 }
 .grafico5 {
   grid-area: grafico5;
   min-width: 320px;
-  padding: 20px;
 }
 /* grid-row e columns tem que respeitar os frames setados pelo grid-template-colums; */
 @media (max-width: 1279px) {

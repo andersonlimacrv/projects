@@ -6,26 +6,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.0/chart.umd.min.js"></script>
-
-    
     <title>Grid Layout - Grid-template-areas - with chartjs</title>
   </head>
   <body>
     <div class="area_graficos">
       <div class="graficos_eficiencia_comparativo">
-        <canvas id="grafico_comparativo_eficiencia_condensadores" class="grafico_condensadores grafico1"></canvas>
-        <canvas id="grafico_comparativo_eficiencia_condensadores_2" class="grafico_condensadores grafico2"></canvas>
+        <canvas
+          id="grafico_comparativo_capacidade_condensadores"
+          class="grafico_condensadores grafico1"
+        ></canvas>
+        <canvas
+          id="grafico_comparativo_eficiencia_energetica"
+          class="grafico_condensadores grafico2"
+        ></canvas>
       </div>
       <div class="graficos_adm_ganho_sat">
-        <canvas id="grafico_TBU_admissao_ar" class="grafico_condensadores grafico3"></canvas>
-        <canvas id="grafico_ganho_energetico_ar" class="grafico_condensadores grafico4"></canvas>
-        <canvas id="grafico_saturacao_ar" class="grafico_condensadores grafico5"></canvas>
+        <canvas
+          id="grafico_TBU_admissao_ar"
+          class="grafico_condensadores grafico3"
+        ></canvas>
+        <canvas
+          id="grafico_ganho_energetico_ar"
+          class="grafico_condensadores grafico4"
+        ></canvas>
+        <canvas
+          id="grafico_saturacao_ar"
+          class="grafico_condensadores grafico5"
+        ></canvas>
       </div>
     </div>
-    <script src="js/grafico_comparativo_eficiencia_condensadores.js"></script>
-    <script src="js/grafico_comparativo_eficiencia_condensadores_2.js"></script>
-    <script src="js/grafico_ganho_energetico_ar.js"></script>
-    <script src="js/grafico_saturacao_ar.js"></script>
-    <script src="js/grafico_TBU_admissao_ar.js"></script>
+    <script src="js/GeraGraficos.js"></script>
   </body>
 </html>
