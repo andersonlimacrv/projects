@@ -32,6 +32,7 @@ function GeraGraficoCapacidadeCondensadores() {
     data,
     options: {
       resposive: true,
+      maintainAspectRatio: true,
       hoverBorderWidth: 4,
       borderRadius: 5,
       borderWidth: 0.8,
@@ -48,7 +49,6 @@ function GeraGraficoCapacidadeCondensadores() {
           },
         },
       },
-
       scales: {
         x: {
           display: true,
@@ -66,11 +66,6 @@ function GeraGraficoCapacidadeCondensadores() {
           },
         },
         y: {
-          ticks: {
-            callback: function (value) {
-              return value + " Kcal/h";
-            },
-          },
           display: true,
           title: {
             display: true,
@@ -90,6 +85,12 @@ function GeraGraficoCapacidadeCondensadores() {
   };
 
   const myChart = new Chart(contextEficienciaEnergetica, config);
+  window.addEventListener("beforeprint", () => {
+    myChart.resize();
+  });
+  window.addEventListener("afterprint", () => {
+    myChart.resize();
+  });
 }
 function GeraGraficoEficienciaCondensadores() {
   const contextCapacidade = document
@@ -128,6 +129,7 @@ function GeraGraficoEficienciaCondensadores() {
       borderRadius: 5,
       borderWidth: 0.8,
       resposive: true,
+      maintainAspectRatio: true,
       plugins: {
         title: {
           display: true,
@@ -158,11 +160,6 @@ function GeraGraficoEficienciaCondensadores() {
           },
         },
         y: {
-          ticks: {
-            callback: function (value) {
-              return value + " Kcal/KWh";
-            },
-          },
           display: true,
           title: {
             display: true,
@@ -213,6 +210,7 @@ function GeraGraficoTBU() {
     data,
     options: {
       resposive: true,
+      maintainAspectRatio: true,
       hoverBorderWidth: 4,
       borderRadius: 5,
       borderWidth: 0.8,
@@ -246,11 +244,6 @@ function GeraGraficoTBU() {
           },
         },
         y: {
-          ticks: {
-            callback: function (value) {
-              return value + " °C";
-            },
-          },
           display: true,
           title: {
             display: true,
@@ -296,6 +289,7 @@ function GeraGraficoGanhoEnergéticoAr() {
     data,
     options: {
       resposive: true,
+      maintainAspectRatio: true,
       hoverBorderWidth: 4,
       borderRadius: 5,
       borderWidth: 0.8,
@@ -329,11 +323,6 @@ function GeraGraficoGanhoEnergéticoAr() {
           },
         },
         y: {
-          ticks: {
-            callback: function (value) {
-              return value + " kJ/kg";
-            },
-          },
           display: true,
           title: {
             display: true,
@@ -381,6 +370,8 @@ function GeraGraficoSaturacao() {
     type: "bar",
     data,
     options: {
+      resposive: true,
+      maintainAspectRatio: true,
       plugins: {
         title: {
           display: true,
@@ -394,7 +385,6 @@ function GeraGraficoSaturacao() {
           },
         },
       },
-      resposive: true,
       scales: {
         x: {
           display: true,
@@ -413,11 +403,6 @@ function GeraGraficoSaturacao() {
         },
         y: {
           display: true,
-          ticks: {
-            callback: function (value) {
-              return  value + " %";
-            },
-          },
           title: {
             display: true,
             text: "Saturação na saída (%)",
@@ -442,3 +427,9 @@ GeraGraficoEficienciaCondensadores();
 GeraGraficoTBU();
 GeraGraficoGanhoEnergéticoAr();
 GeraGraficoSaturacao();
+window.addEventListener("beforeprint", () => {
+  myChart.resize();
+});
+window.addEventListener("afterprint", () => {
+  myChart.resize();
+});

@@ -11,30 +11,40 @@
   <body>
     <div class="area_graficos">
       <div class="graficos_eficiencia_comparativo">
-        <canvas
-          id="grafico_comparativo_capacidade_condensadores"
-          class="grafico_condensadores grafico1"
-        ></canvas>
-        <canvas
-          id="grafico_comparativo_eficiencia_energetica"
-          class="grafico_condensadores grafico2"
-        ></canvas>
+        <div class="grafico1">
+          <canvas
+            id="grafico_comparativo_capacidade_condensadores"
+            class="grafico_condensadores"
+          ></canvas>
+        </div>
+        <div class="grafico2">
+          <canvas
+            id="grafico_comparativo_eficiencia_energetica"
+            class="grafico_condensadores"
+          ></canvas>
+        </div>
       </div>
       <div class="graficos_adm_ganho_sat">
-        <canvas
-          id="grafico_TBU_admissao_ar"
-          class="grafico_condensadores grafico3"
-        ></canvas>
-        <canvas
-          id="grafico_ganho_energetico_ar"
-          class="grafico_condensadores grafico4"
-        ></canvas>
-        <canvas
-          id="grafico_saturacao_ar"
-          class="grafico_condensadores grafico5"
-        ></canvas>
+        <div class="grafico3">
+          <canvas
+            id="grafico_TBU_admissao_ar"
+            class="grafico_condensadores"
+          ></canvas>
+        </div>
+        <div class="grafico4">
+          <canvas
+            id="grafico_ganho_energetico_ar"
+            class="grafico_condensadores"
+          ></canvas>
+        </div>
+        <div class="grafico5">
+          <canvas
+            id="grafico_saturacao_ar"
+            class="grafico_condensadores"
+          ></canvas>
+        </div>
       </div>
     </div>
-    <script src="js/GeraGraficos.js"></script>
+    <script src="js/geraGraficos.js"></script>
   </body>
 </html>

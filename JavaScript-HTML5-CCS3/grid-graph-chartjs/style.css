@@ -21,31 +21,27 @@
   gap: 10px;
   grid-template-columns: repeat(3, 1fr);
   grid-auto-rows: minmax(
-    250px,
+    350px,
     auto
   ); /* minimo 120px de altura e maximo responsivo */
+
   grid-template-areas: "grafico3 grafico4 grafico5";
 }
 
 .grafico1 {
   grid-area: grafico1;
-  min-width: 50%;
 }
 .grafico2 {
   grid-area: grafico2;
-  min-width: 50%;
 }
 .grafico3 {
   grid-area: grafico3;
-  min-width: 50%;
 }
 .grafico4 {
   grid-area: grafico4;
-  min-width: 50%;
 }
 .grafico5 {
   grid-area: grafico5;
-  min-width: 50%;
 }
 /* grid-row e columns tem que respeitar os frames setados pelo grid-template-colums; */
 @media (max-width: 1279px) {
@@ -58,6 +54,7 @@
   .graficos_adm_ganho_sat {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
   }
 }
 @media (max-width: 620px) {
