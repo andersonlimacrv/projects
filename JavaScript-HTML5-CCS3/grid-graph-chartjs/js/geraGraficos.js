@@ -85,12 +85,9 @@ function GeraGraficoCapacidadeCondensadores() {
   };
 
   const myChart = new Chart(contextEficienciaEnergetica, config);
-  window.addEventListener("beforeprint", () => {
-    myChart.resize();
-  });
-  window.addEventListener("afterprint", () => {
-    myChart.resize();
-  });
+window.addEventListener("resize", function () {
+  myChart.resize();
+});
 }
 function GeraGraficoEficienciaCondensadores() {
   const contextCapacidade = document
@@ -179,6 +176,9 @@ function GeraGraficoEficienciaCondensadores() {
   };
 
   const myChart = new Chart(contextCapacidade, config);
+  window.addEventListener("resize", function () {
+    myChart.resize();
+  });
 }
 function GeraGraficoTBU() {
   const contextGraficoTBU = document
@@ -263,6 +263,9 @@ function GeraGraficoTBU() {
   };
 
   const myChart = new Chart(contextGraficoTBU, config);
+  window.addEventListener("resize", function () {
+    myChart.resize();
+  });
 }
 function GeraGraficoGanhoEnergéticoAr() {
   const contextGannhoEnergetico = document
@@ -342,6 +345,9 @@ function GeraGraficoGanhoEnergéticoAr() {
   };
 
   const myChart = new Chart(contextGannhoEnergetico, config);
+  window.addEventListener("resize", function () {
+    myChart.resize();
+  });
 }
 function GeraGraficoSaturacao() {
   const contextSaturacao = document
@@ -421,6 +427,9 @@ function GeraGraficoSaturacao() {
   };
 
   const myChart = new Chart(contextSaturacao, config);
+  window.addEventListener("resize", function () {
+    myChart.resize();
+  });
 }
 GeraGraficoCapacidadeCondensadores();
 GeraGraficoEficienciaCondensadores();
