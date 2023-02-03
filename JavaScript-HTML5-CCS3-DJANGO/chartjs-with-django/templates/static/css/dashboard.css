@@ -1,0 +1,43 @@
+body{
+  background-color: #181f45;
+  color: white;
+}
+
+
+/*------- Footer Area Start -----------*/
+.footer-icons ul li {
+  display: inline-block;
+}
+
+.footer-icons ul li a {
+  border: 1px solid #444;
+  color: #444;
+  display: block;
+  font-size: 16px;
+  height: 40px;
+  line-height: 38px;
+  margin-right: 5px;
+  text-align: center;
+  width: 40px;
+  border-radius: 50%;
+}
+
+.footer-icons,
+.copyright_text-center {
+  text-align: center;
+}
+
+.footer-content {
+  display: block;
+  overflow: hidden;
+}
+
+.footer-icons a:hover {
+  background: #3ec1d5;
+  border: 1px solid #3ec1d5;
+  color: #fff;
+}
+.footer-area-bottom {
+  background: #181f45 none repeat scroll 0 0;
+  padding: 10px 0;
+}
