@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Document</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <label id="logo"> Logo </label>
+        <input type="checkbox" id="btnMenu" />
+        <label for="btnMenu" class="containerMenu">
+          <div id="toggleMenu"></div>
+        </label>
+        <div class="links">
+          <button class="btn">
+            <div class="text"><a href="">Home</a></div>
+          </button>
+          <button class="btn">
+            <div class="text"><a href="">About</a></div>
+          </button>
+          <button class="btn">
+            <div class="text"><a href="">Services</a></div>
+          </button>
+          <button class="btn">
+            <div class="text"><a href="">Sair</a></div>
+          </button>
+        </div>
+      </nav>
+    </header>
+    <script>
+      const toggleMenu = document.getElementById("toggleMenu");
+      toggleMenu.onclick = function () {
+        toggleMenu.classList.toggle("active"); /* classe do js.toggle */
+      };
+    </script>
+  </body>
+</html>
