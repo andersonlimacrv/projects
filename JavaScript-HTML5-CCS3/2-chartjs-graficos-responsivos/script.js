@@ -32,7 +32,8 @@ function GeraGraficoCapacidadeCondensadores() {
     data,
     options: {
       resposive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
+      aspectRatio: 0.8,
       hoverBorderWidth: 4,
       borderRadius: 5,
       borderWidth: 0.8,
@@ -126,7 +127,8 @@ function GeraGraficoEficienciaCondensadores() {
       borderRadius: 5,
       borderWidth: 0.8,
       resposive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
+      aspectRatio: 0.8,
       plugins: {
         title: {
           display: true,
@@ -210,7 +212,8 @@ function GeraGraficoTBU() {
     data,
     options: {
       resposive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
+      aspectRatio: 0.8,
       hoverBorderWidth: 4,
       borderRadius: 5,
       borderWidth: 0.8,
@@ -292,7 +295,8 @@ function GeraGraficoGanhoEnergéticoAr() {
     data,
     options: {
       resposive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
+      aspectRatio: 0.8,
       hoverBorderWidth: 4,
       borderRadius: 5,
       borderWidth: 0.8,
@@ -377,7 +381,8 @@ function GeraGraficoSaturacao() {
     data,
     options: {
       resposive: true,
-      maintainAspectRatio: true,
+      maintainAspectRatio: false,
+      aspectRatio: 0.8,
       plugins: {
         title: {
           display: true,
