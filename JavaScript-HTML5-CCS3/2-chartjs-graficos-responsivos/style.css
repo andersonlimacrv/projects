@@ -1,0 +1,63 @@
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-image: #8ec5ff;
+  background-image: radial-gradient(circle, #1a293e, #1f1f1f);
+}
+
+/* #04202E cor de fundo dos gráficos */
+.grafico1,
+.grafico2 {
+  height: 350px;
+  width: 100vw;
+  margin: 0;
+}
+.grafico3,
+.grafico4,
+.grafico5 {
+  height: 350px;
+  width: 80vw;
+  margin-top: 10px;
+}
+.graficos_eficiencia_comparativo,
+.graficos_adm_ganho_sat {
+  display: flex;
+  align-items: center;
+  align-content: stretch;
+  margin-top: 10px;
+
+}
+.graficos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: linear-gradient(145deg, #041d29, #042231);
+  box-shadow: 6px 6px 12px #021219, -6px -6px 12px #021219;
+  margin: 0 10px;
+}
+/* MobileFirst */
+@media screen and (max-width: 767px) {
+  .graficos {
+    
+  }
+}
+
+@media screen and (max-width: 470px) {
+  .graficos_eficiencia_comparativo,
+.graficos_adm_ganho_sat {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    height: 650px;
+    width: 100vw;
+    gap:10px;
+    
+  }
+  .graficos_adm_ganho_sat{
+    height: 650px;
+}
+
+}
+
+
