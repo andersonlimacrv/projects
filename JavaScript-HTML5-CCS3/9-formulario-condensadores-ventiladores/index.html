@@ -1,100 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Document</title>
-  </head>
-  <body>
-    <html>
-      <body id="main">
-        <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
-        <div id="div-imagem-fundo"></div>
-        <div id="div-titulos">
-          <h1 id="title">Formulário de apresentação</h1>
-          <p id="description">Coleta de dados preliminares</p>
-        </div>
-        <div id="div-principal">
-          <form id="survey-form">
-            <label id="name-label" for="name">Nome: </label>
-            <div id="div-name">
-              <input
-                id="name"
-                type="text"
-                placeholder="seu nome aqui"
-                required
-              />
-            </div>
-            <label id="email-label" for="email">E-mail: </label>
-            <div id="div-email">
-              <input
-                id="email"
-                type="email"
-                placeholder="seu e-mail aqui"
-                required
-              />
-            </div>
-            <label id="number-label" for="number">Idade: </label>
-            <div id="div-idade">
-              <input
-                id="number"
-                type="number"
-                placeholder="sua idade aqui"
-                min="18"
-                max="60"
-              />
-            </div>
-            <label id="experiencia-label" for="dropdown"
-              >Experiência Profissional:
-            </label>
-            <div id="div-dropdown-experiencia">
-              <select id="dropdown">
-                <option>Curioso</option>
-                <option>Estudante</option>
-                <option>Profissional</option>
-              </select>
-            </div>
-            <!--Radio buttons-->
-            <fieldset id="fieldset-radios">
-              <legend>Seleção de números</legend>
-              <div id="div-radio">
-                <input id="opc1" type="radio" name="selecao" value="Um" />
-                <label id="label-opc1" for="opc1">Um </label><br />
-                <input id="opc2" type="radio" name="selecao" value="Dois" />
-                <label id="label-opc2" for="opc2">Dois </label><br />
-                <input id="opc3" type="radio" name="selecao" value="Três" />
-                <label id="label-opc3" for="opc3">Três </label><br />
-                <input id="opc4" type="radio" name="selecao" value="Quatro" />
-                <label id="label-opc4" for="opc4">Quatro </label><br />
-              </div>
-            </fieldset>
-            <!--Checkboxes-->
-            <fieldset id="fieldset-checks">
-              <legend>Seleção de valores</legend>
-              <div id="div-checkbox">
-                <input id="chk1" type="checkbox" value="valor1" />
-                <label id="label-chk1" for="chk1">Valor 1 </label><br />
-                <input id="chk2" type="checkbox" value="valor2" />
-                <label id="label-chk2" for="chk2">Valor 2 </label><br />
-                <input id="chk3" type="checkbox" value="valor3" />
-                <label id="label-chk3" for="chk3">Valor 3 </label><br />
-              </div>
-            </fieldset>
-            <!--Text area-->
-            <div id="div-textarea">
-              <label id="label-textarea" for="text-area"
-                >Informações adicionais:</label
-              ><br /><br />
-              <textarea id="text-area" rows="5" cols="85"></textarea>
-            </div>
-            <!--Button-->
-            <br />
-            <input id="submit" type="submit" value="Submit" />
-          </form>
-        </div>
-      </body>
-    </html>
-  </body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="style.css" />
+        <title>Document</title>
+    </head>
+    <body>
+        <html>
+            <body id="main">
+                <div id="div-imagem-fundo"></div>
+                <div id="div-titulos">
+                    <h1 id="title">
+                        Formulário de Informações técnicas dos Condensadores.
+                    </h1>
+                    <p id="description">Coleta de dados preliminares.</p>
+                </div>
+                <div id="div-principal">
+                    <form id="survey-form">
+                        <label id="name-label" for="name">Nome: </label>
+                        <div id="div-name">
+                            <input
+                                id="name"
+                                type="text"
+                                placeholder="seu nome aqui"
+                                required
+                            />
+                        </div>
+                        <label id="email-label" for="email">E-mail: </label>
+                        <div id="div-email">
+                            <input
+                                id="email"
+                                type="email"
+                                placeholder="seu e-mail aqui"
+                                required
+                            />
+                        </div>
+                        <label id="number-label" for="number">Idade: </label>
+                        <div id="div-idade">
+                            <input
+                                id="number"
+                                type="number"
+                                placeholder="sua idade aqui"
+                                min="18"
+                                max="60"
+                            />
+                        </div>
+                        <label id="experiencia-label" for="dropdown"
+                            >Experiência Profissional:
+                        </label>
+                        <div id="div-dropdown-experiencia">
+                            <select id="dropdown">
+                                <option>Curioso</option>
+                                <option>Estudante</option>
+                                <option>Profissional</option>
+                            </select>
+                        </div>
+                        <!--Radio buttons-->
+                        <fieldset id="fieldset-radios">
+                            <legend>Seleção de números</legend>
+                            <div id="div-radio">
+                                <input
+                                    id="opc1"
+                                    type="radio"
+                                    name="selecao"
+                                    value="Um"
+                                />
+                                <label id="label-opc1" for="opc1">Um </label
+                                ><br />
+                                <input
+                                    id="opc2"
+                                    type="radio"
+                                    name="selecao"
+                                    value="Dois"
+                                />
+                                <label id="label-opc2" for="opc2">Dois </label
+                                ><br />
+                                <input
+                                    id="opc3"
+                                    type="radio"
+                                    name="selecao"
+                                    value="Três"
+                                />
+                                <label id="label-opc3" for="opc3">Três </label
+                                ><br />
+                                <input
+                                    id="opc4"
+                                    type="radio"
+                                    name="selecao"
+                                    value="Quatro"
+                                />
+                                <label id="label-opc4" for="opc4">Quatro </label
+                                ><br />
+                            </div>
+                        </fieldset>
+                        <!--Checkboxes-->
+                        <fieldset id="fieldset-checks">
+                            <legend>Seleção de valores</legend>
+                            <div id="div-checkbox">
+                                <input
+                                    id="chk1"
+                                    type="checkbox"
+                                    value="valor1"
+                                />
+                                <label id="label-chk1" for="chk1"
+                                    >Valor 1 </label
+                                ><br />
+                                <input
+                                    id="chk2"
+                                    type="checkbox"
+                                    value="valor2"
+                                />
+                                <label id="label-chk2" for="chk2"
+                                    >Valor 2 </label
+                                ><br />
+                                <input
+                                    id="chk3"
+                                    type="checkbox"
+                                    value="valor3"
+                                />
+                                <label id="label-chk3" for="chk3"
+                                    >Valor 3 </label
+                                ><br />
+                            </div>
+                        </fieldset>
+                        <!--Text area-->
+                        <div id="div-textarea">
+                            <label id="label-textarea" for="text-area"
+                                >Informações adicionais:</label
+                            ><br /><br />
+                            <textarea
+                                id="text-area"
+                                rows="5"
+                                cols="85"
+                            ></textarea>
+                        </div>
+                        <!--Button-->
+                        <br /><div class="wrap">
+                        <input class= "button" id="submit" type="submit" value="Submit" />
+                    </form>f</div>
+                </div>
+            </body>
+        </html>
+    </body>
 </html>
