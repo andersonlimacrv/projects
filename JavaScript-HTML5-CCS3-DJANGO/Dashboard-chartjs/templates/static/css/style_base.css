@@ -1,0 +1,288 @@
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #8ec5ff;
+  background-image: radial-gradient(circle, #1a293e, #1f1f1f);
+}
+header {
+  background-color: #04202e;
+  box-shadow: 3px 3px 3px #000a, 2px 2px 2px #250202;
+}
+nav {
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1144px;
+  margin: auto;
+}
+/* ---------------------------------------Inicio de estilização LOGO------------------------------------------------*/
+#logo {
+  padding: 1rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+/* ---------------------------------------Fim de estilização LOGO ------------------------------------------------*/
+.links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 5px 0;
+}
+.links a {
+  color: Gainsboro;
+  text-decoration: none;
+  padding: 0.5rem;
+  transition: all 0.5s;
+  -webkit-transition: all 0.5s;
+  -moz-transition: all 0.5s;
+  -ms-transition: all 0.5s;
+  -o-transition: all 0.5s;
+}
+.links a:hover {
+  text-decoration: bold;
+  color: #8ec5ff;
+}
+#btnMenu,
+#toggleMenu {
+  display: none;
+}
+.containerMenu {
+  font-size: 22px;
+  display: none;
+}
+/* ---------------------------------------Inicio de estilização dos botões header ------------------------------------------------*/
+.btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 1em 1em;
+  font-weight: bold;
+  border-width: 0;
+  border-radius: 0.5em;
+  transition: 0.2s ease;
+}
+.text {
+  font-size: 0.8em;
+  color: white;
+  z-index: 1;
+}
+.btn::before {
+  position: absolute;
+  content: "";
+  top: -75%;
+  left: -10%;
+  width: 120%;
+  height: 250%;
+  background-image: linear-gradient(
+    135deg,
+    rgba(142, 197, 255, 1) 0%,
+    rgb(12, 37, 38) 100%
+  );
+}
+.btn::after {
+  position: absolute;
+  content: "";
+  width: 94%;
+  height: 85%;
+  border-width: 0;
+  border-radius: 0.5em;
+  background-color: #04202e;
+}
+.btn:hover.btn {
+  transform: scale(1.1);
+}
+
+.btn:hover.btn::before {
+  animation: turn_4810 1s infinite linear;
+}
+.btn:active.btn {
+  transform: scale(1.05);
+}
+.btn:active.btn::before {
+  transform: scale(1.05);
+  animation: turn_4810 0.6s infinite linear;
+}
+@keyframes turn_4810 {
+  0% {
+    transform: rotate(deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/* ---------------------------------------FIM de estilização dos botões header ------------------------------------------------*/
+@media only screen and (max-width: 999px) {
+  .containerMenu,
+  .switch {
+    display: block;
+    margin-right: 1rem;
+  }
+
+  .links {
+    position: fixed;
+    background-color: #04202e;
+    min-height: calc(100vh - 51px);
+    flex-flow: column;
+    width: 100%;
+    top: 51px;
+    left: 100%;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    -ms-transition: all 0.5s;
+    -o-transition: all 0.5s;
+  }
+  #btnMenu:checked ~ .links {
+    left: 0;
+  }
+}
+
+/* Inicio de estilização togle, agora vai */
+#toggleMenu {
+  background: none;
+  position: relative;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.5s;
+}
+#toggleMenu::before {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 2px;
+  background-color: #fff;
+  transition: 0.5s;
+  transform: translateY(-10px);
+  box-shadow: 0 10px 0 #fff; /* Barra do meio */
+}
+#toggleMenu::after {
+  content: "";
+  position: absolute;
+  width: 28px;
+  height: 2px;
+  background-color: #fff;
+  transition: 0.5s;
+  transform: translateY(10px);
+}
+#toggleMenu.active {
+  background-color: #3a0404;
+  border-radius: 0.5rem;
+}
+#toggleMenu.active::before {
+  transform: translateY(0) rotate(45deg);
+  box-shadow: 0 0 0 #FFF;
+}
+#toggleMenu.active::after {
+  transform: translateY(0)rotate(-45deg);
+}
+/* ---------------------------------------Inicio de estilização do Footer ------------------------------------------------*/
+:root {
+  --link-size: 64px;
+  --trans-props: all 0.3s ease;
+}
+
+
+.wrapper {
+  width: 100%;
+  height: 100vh;
+}
+
+.wrapper,
+.social-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: row wrap;
+}
+
+/*** Containers and icons ***/
+
+.social-icon {
+  display: flex;
+
+  position: relative;
+  overflow: hidden; /* Trim branded overlays */
+
+  width: var(--link-size);
+  height: var(--link-size);
+  margin: 8px;
+
+  background-color: #04202e;
+  border-radius: 50%;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12);
+
+  text-decoration: none;
+
+  transition: var(--trans-props);
+}
+
+.social-icon i {
+  margin: auto; /* Perfect centering thanks to parental flex */
+
+  font-size: 24px;
+  color: hsl(212, 16%, 48%);
+
+  z-index: 1; /* Make sure icons will be on top */
+
+  transition: var(--trans-props);
+}
+
+/*** Branded overlays from the bottom ***/
+
+.social-icon:after {
+  content: "";
+
+  width: var(--link-size);
+  height: var(--link-size);
+
+  position: absolute;
+
+  transform: translate(0, var(--link-size));
+
+  border-radius: 50%;
+  transition: var(--trans-props);
+}
+
+.social-icon.twitter:after {
+  background-color: #1da1f2;
+}
+
+.social-icon.github:after {
+  background-color: #24292e;
+}
+
+.social-icon.instagram:after {
+  background-image: linear-gradient(
+    to bottom left,
+    #4f5bd5,
+    #962fbf,
+    #d62976,
+    #fa7e1e,
+    #feda75
+  );
+}
+
+/*** Animations ***/
+
+.social-icon:hover {
+  transform: translateY(-4px);
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.16);
+}
+
+.social-icon:hover i {
+  /*  transform: scale(1.1); */
+  color: #fff;
+}
+
+.social-icon:hover:after {
+  transform: translate(0) scale(1.2);
+}
