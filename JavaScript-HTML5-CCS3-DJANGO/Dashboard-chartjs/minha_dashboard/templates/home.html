@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block 'title' %}Dashboard{% endblock %}
+{% block 'head'%}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.0/chart.umd.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/style_body.css' %}" />
+{% endblock %}
+{% block 'body_main' %}
+<div class="area_graficos">
+      <div class="graficos_eficiencia_comparativo">
+        <div class="grafico1 graficos">
+          <canvas
+            id="grafico_comparativo_capacidade_condensadores"
+            class="grafico_condensadores"
+          ></canvas>
+        </div>
+        <div class="grafico2 graficos">
+          <canvas
+            id="grafico_comparativo_eficiencia_energetica"
+            class="grafico_condensadores"
+          ></canvas>
+        </div>
+      </div>
+      <div class="graficos_adm_ganho_sat">
+        <div class="grafico3 graficos">
+          <canvas
+            id="grafico_TBU_admissao_ar"
+            class="grafico_condensadores"
+          ></canvas>
+        </div>
+        <div class="grafico4 graficos">
+          <canvas
+            id="grafico_ganho_energetico_ar"
+            class="grafico_condensadores"
+          ></canvas>
+        </div>
+        <div class="grafico5 graficos">
+          <canvas
+            id="grafico_saturacao_ar"
+            class="grafico_condensadores"
+          ></canvas>
+        </div>
+      </div>
+    </div>
+    <script src="{% static 'js/script_geraGraficos.js' %}"></script>
+{% endblock %}
