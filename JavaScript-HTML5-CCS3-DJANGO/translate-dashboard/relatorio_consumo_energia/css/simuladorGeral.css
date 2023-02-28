@@ -1,0 +1,74 @@
+.firstchart,
+.secondchart,
+.thirdchart,
+.fourthchart,
+.fifthchart,
+.thirdfourtchart,
+.seventhchart {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: row;
+    text-align: center;
+}
+
+.sixthchart {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+#eficienciaEnergetica,
+#condensacao,
+#demandaativa {
+    background: rgb(44, 35, 97);
+    width: 150px;
+    margin-left: 10px;
+}
+.btnCalc{
+    margin-top: 70px;
+    margin-left: 50px;
+}
+
+button {
+    width: 100px;
+    height: 100px;
+    border: 0ch;
+    background: transparent;
+}
+
+.addRegime {
+    width: 30px;
+    height: 30px;
+    background-color: url(../aviso_on5.png);
+}
+
+.machines {
+    margin-top: 15px;
+}
+
+.card-title {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+label {
+    color: aliceblue;
+    text-align: center;
+    height: 25px;
+}
+
+input {
+    text-align: center;
+}
+
+td{
+    color: white;
+    text-align: center;
+}
+#rectangle1{
+    background-color: #303030;
+}
+

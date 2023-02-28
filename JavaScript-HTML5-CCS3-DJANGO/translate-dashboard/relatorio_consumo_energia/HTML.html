@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <link rel="stylesheet" href="css.css">
+      <script src="js.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <link href="./css/bootstrap.min.css" rel="stylesheet">
+      <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://www.gstatic.com/charts/loader.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+      <script src="https://cdnout.com/html2pdf.js"></script>
+</head>
+<body>
+        <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1 style="font-weight: bold;">Relatório consumo de energia</h1>
+                    <h5><a style="color: rgb(121, 120, 120);" href="{% url 'unidades' unidade.pk %}">{{unidade}}</a>/Relatório consumo de energia</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- RELATÓRIO DIÁRIO -->
+    <h2 style="text-align: center;">
+        <form class="form-inline" style="justify-content: center;">
+            <div class="form-group mx-sm-3 mb-2">
+                <input class="form-control" name='date_hoje' id='data_hoje' type="date" style="width: auto;font-size: 20px;font-weight: bold;">
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <button type="submit" class="btn btn-light"  style="margin-left: 3%;font-size: 20px">OK</button>
+            </div>
+        </form>
+    </h2>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-3 text-center" style="margin-top: 1%;">
+                    <div class="card  v-graph text-center; container-fluid" style="padding-bottom: 2%;height:auto;background-color: #262D47;" >
+                        <h5 style="text-align: center;margin: 0;padding: 0;">Consumo de energia mensal</h5>
+                        <br>
+                        <div id="consumo_energia_mensal_legenda"style="width:auto !important; height: auto;color: #007BFF;font-size:15px;">Valor acumulado</div>
+                        <div id="consumo_energia_mensal_texto" style="width:auto !important; height: auto;color: #007BFF;font-size:30px;"></div>
+                        <div id="grafico_consumo_energia_mensal" style="width:auto !important; height: 100%;"></div>
+                        <div id="consumo_energia_mensal_informacoes" style="width:auto !important; height: auto;text-align: center;" class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #56a8ff;font-size:15px;margin:0;padding:0">Fora de ponta Capacitivo</label><br>
+                                    <label id="fora_ponta_capacitivo_valor_consumo_mensal" style="color: #007BFF;font-size:20px;margin:0;padding:0">0 kWh</label><br>
+                                    <h6 style="color: #56a8ff;margin:0;padding:0">{{mes_diario}}/{{ano_diario}}</h6>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #1AB394;font-size:15px;margin:0;padding:0">Fora de ponta Indutivo</label><br>
+                                    <label id="fora_ponta_indutivo_valor_consumo_mensal" style="color: #1AB394;font-size:20px;margin:0;padding:0">0 kWh</label><br>
+                                    <h6 style="color: #1AB394;margin:0;padding:0">{{mes_diario}}/{{ano_diario}}</h6> 
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #ED5565;font-size:15px;margin:0;padding:0">Ponta</label><br>
+                                    <label id="ponta_valor_consumo_mensal" style="color: #ED5565;font-size:20px;margin:0;padding:0">0 kWh</label><br>
+                                    <h6 style="color: #ED5565;margin:0;padding:0">{{mes_diario}}/{{ano_diario}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center" style="margin-top: 1%;">
+                    <div class="card  v-graph text-center; container-fluid" style="padding-bottom: 2%;height: auto;background-color: #262D47;" >
+                        <h5 style="text-align: center; margin: 0;padding: 0;">Monitoramento do consumo de energia</h5>
+                        <br>
+                        <div id="consumo_energia_legenda" style="width:auto !important; height: auto;color: #007BFF;font-size:15px;">Valor total</div>
+                        <div id="consumo_energia_texto" style="width:auto !important; height: auto;color: #007BFF;font-size:30px;"></div>
+                        <div id="grafico_consumo_hoje" style="width:auto !important; height: 100%;"></div>
+                        <div id="consumo_informacoes" style="width:auto !important; height: auto;text-align: center;" class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #56a8ff;font-size:15px;margin:0;padding:0">Fora de ponta Capacitivo</label><br>
+                                    <label id="fora_ponta_capacitivo_valor_consumo" style="color: #007BFF;font-size:20px;margin:0;padding:0">0 kWh</label><br>
+                                    <h6 id="fora_ponta_capacitivo_hora_consumo" style="color: #56a8ff;margin:0;padding:0">{{data_hoje}}</h6>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #1AB394;font-size:15px;margin:0;padding:0">Fora de ponta Indutivo</label><br>
+                                    <label id="fora_ponta_indutivo_valor_consumo" style="color: #1AB394;font-size:20px;margin:0;padding:0">0 kWh</label><br>
+                                    <h6 id="fora_ponta_indutivo_hora_consumo" style="color: #1AB394;margin:0;padding:0">{{data_hoje}}</h6>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #ED5565;font-size:15px;margin:0;padding:0">Ponta</label><br>
+                                    <label id="ponta_valor_consumo" style="color: #ED5565;font-size:20px;margin:0;padding:0">0 kWh</label><br>
+                                    <h6 id="ponta_hora_consumo" style="color: #ED5565;margin:0;padding:0">{{data_hoje}}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 text-center" style="margin-top: 1%;">
+                    <div class="card  v-graph text-center; container-fluid" style="padding-bottom: 2%;height: auto;background-color: #262D47;" >
+                        <h5 style="text-align: center;margin: 0;padding: 0;">Monitoramento da demanda ativa</h5>
+                        <br>
+                        <div id="demanda_ativa_legenda" style="width:auto !important; height: auto;color: #007BFF;font-size:15px;">Valor atual</div>
+                        <div id="demanda_ativa_texto" style="width:auto !important; height: auto;color: #007BFF;font-size:30px;"></div>
+                        <div id="grafico_demanda_ativa_hoje" style="width:auto !important; height: 100%;"></div>
+                        <div id="demanda_ativa_informacoes" style="width:auto !important; height: auto;text-align: center;" class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #56a8ff;font-size:15px;margin:0;padding:0">Fora de ponta Capacitivo</label><br>
+                                    <label id="fora_ponta_capacitivo_valor_demanda_ativa" style="color: #007BFF;font-size:20px;margin:0;padding:0">0 kW</label><br>
+                                    <h6 id="fora_ponta_capacitivo_hora_demanda_ativa" style="color: #56a8ff;margin:0;padding:0">--:--</h6>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #1AB394;font-size:15px;margin:0;padding:0">Fora de ponta Indutivo</label><br>
+                                    <label id="fora_ponta_indutivo_valor_demanda_ativa" style="color: #1AB394;font-size:20px;margin:0;padding:0">0 kW</label><br>
+                                    <h6 id="fora_ponta_indutivo_hora_demanda_ativa" style="color: #1AB394;margin:0;padding:0">--:--</h6>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #ED5565;font-size:15px;margin:0;padding:0">Ponta</label><br>
+                                    <label id="ponta_valor_demanda_ativa" style="color: #ED5565;font-size:20px;margin:0;padding:0">0 kW</label><br>
+                                    <h6 id="ponta_hora_demanda_ativa" style="color: #ED5565;margin:0;padding:0">--:--</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- sala de maquina -->
+                <div class="col-md-3 text-center" style="margin-top: 1%;">
+                    <div class="card  v-graph text-center; container-fluid" style="padding-bottom: 2%;height: auto;background-color: #262D47;" >
+                        <h5 style="text-align: center;margin: 0;padding: 0;">Monitoramento da sala de máquinas</h5>
+                        <br>
+                        <div id="sala_maquina_legenda" style="width:auto !important; height: auto;color: #007BFF;font-size:15px;">Valor atual</div>
+                        <div id="sala_maquina_texto " style="width:auto !important; height: auto;color: #007BFF;font-size:30px;"></div>
+                        <div id="grafico_sala_maquina_hoje" style="width:auto !important; height: 100%;"></div>
+                        <div id="sala_maquina_informacoes" style="width:auto !important; height: auto;text-align: center;" class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #56a8ff;font-size:15px;margin:0;padding:0">Fora de ponta Capacitivo</label><br>
+                                    <label id="fora_ponta_capacitivo_valor_sala_maquina" style="color: #007BFF;font-size:20px;margin:0;padding:0">0 kW</label><br>
+                                    <h6 id="fora_ponta_capacitivo_hora_sala_maquina" style="color: #56a8ff;margin:0;padding:0">--:--</h6>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #1AB394;font-size:15px;margin:0;padding:0">Fora de ponta Indutivo</label><br>
+                                    <label id="fora_ponta_indutivo_valor_sala_maquina" style="color: #1AB394;font-size:20px;margin:0;padding:0">0 kW</label><br>
+                                    <h6 id="fora_ponta_indutivo_hora_sala_maquina" style="color: #1AB394;margin:0;padding:0">--:--</h6>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #ED5565;font-size:15px;margin:0;padding:0">Ponta</label><br>
+                                    <label id="ponta_valor_sala_maquina" style="color: #ED5565;font-size:20px;margin:0;padding:0">0 kW</label><br>
+                                    <h6 id="ponta_hora_sala_maquina" style="color: #ED5565;margin:0;padding:0">--:--</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- sala de maquina -->
+                <div class="col-md-3 text-center" style="margin-top: 1%;">
+                    <div class="card  v-graph text-center; container-fluid" style="padding-bottom: 2%;height: auto;background-color: #262D47;" >
+                        <h5 style="text-align: center;margin: 0;padding: 0;">Monitoramento da demanda reativa</h5>
+                        <br>
+                        <div id="demanda_reativa_legenda" style="width:auto !important; height: auto;color: #007BFF;font-size:15px;">Valor atual</div>
+                        <div id="demanda_reativa_texto" style="width:auto !important; height: auto;color: #007BFF;font-size:30px;"></div>
+                        <div id="grafico_demanda_reativa_hoje" style="width:auto !important; height: 100%;"></div>
+                        <div id="demanda_reativa_informacoes" style="width:auto !important; height: auto;text-align: center;" class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #56a8ff;font-size:15px;margin:0;padding:0">Fora de ponta Capacitivo</label><br>
+                                    <label id="fora_ponta_capacitivo_valor_demanda_reativa" style="color: #007BFF;font-size:20px;margin:0;padding:0">0 kVAR</label><br>
+                                    <h6 id="fora_ponta_capacitivo_hora_demanda_reativa" style="color: #56a8ff;margin:0;padding:0">--:--</h6>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #1AB394;font-size:15px;margin:0;padding:0">Fora de ponta Indutivo</label><br>
+                                    <label id="fora_ponta_indutivo_valor_demanda_reativa" style="color: #1AB394;font-size:20px;margin:0;padding:0">0 kVAR</label><br>
+                                    <h6 id="fora_ponta_indutivo_hora_demanda_reativa" style="color: #1AB394;margin:0;padding:0">--:--</h6>
+                                </div>
+                                <div class="col-md-6 text-left">
+                                    <label style="color: #ED5565;font-size:15px;margin:0;padding:0">Ponta</label><br>
+                                    <label id="ponta_valor_demanda_reativa" style="color: #ED5565;font-size:20px;margin:0;padding:0">0 kVAR</label><br>
+                                    <h6 id="ponta_hora_demanda_reativa" style="color: #ED5565;margin:0;padding:0">--:--</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RELATÓRIO DETALHADO -->
+    <h1 style="text-align:center; margin-top: 100px;">Relatório detalhado</h1>
+    <br>
+    <div id="rectangle"  style="padding-top: 1%;box-shadow: 0 0 6px #000000;border-radius: 20px 20px 0px 0px;">
+        <form class="form-inline" style="justify-content: center;">
+            <div class="form-group mx-sm-3 mb-2">
+                <label style="font-size: large;">Selecionar tipo:</label>
+                <select class="form-control" onclick="myFunction()" id="tipo_relatorio" name="tipo_relatorio" style="background-color: white; color: black;">   
+                    <option value="semanal" style="color: black;">Semanal</option>
+                    <option value="mensal" style="color: black;">Mensal</option>
+                    <option value="anual" style="color: black;">Anual</option>
+                </select>
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <label style="font-size: large;">Selecionar data:</label>
+                <input class="form-control" name='date_semana' id='data_semanal' type="date" style="width: auto;display: none;">
+                <input class="form-control" name='date_mes' id="data_mensal" type="month" style="width: auto;display: none;">
+                <input class="form-control" name='date_ano'type="number" min="1900" max="2099" step="1" id="data_anual" style="width:auto;display: none;" />
+            </div>
+            <div class="form-group mx-sm-3 mb-2">
+                <button type="submit" class="btn btn-light"  style="margin-left: 10%;">OK</button>
+            </div>
+        </form>
+    </div>
+    <div  style="padding-top: 1%;box-shadow: 1px 1px 6px #000000;border-radius: 0px 0px 20px 20px;background-color: #262D47;height: auto;" class="container-fluid">
+        <h4 style="text-align: center;">Fator de potência</h4>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-12 text-center" style="margin-top: 1%;" id="grafico_fator" >
+                        
+                    </div>
+                </div>
+                <hr style="background-color: black;height: 5px;">
+                <h4 style="text-align: center;">Demanda Ativa</h4>
+                <div class="row">
+                    <div class="col-md-12 text-center" style="margin-top: 1%;" id="grafico_demanda_ativa" >
+
+                    </div>
+                </div>
+
+                <hr style="background-color: black;height: 5px;">
+                <h4 style="text-align: center;">Sala de Maquinas</h4>
+                <div class="row">
+                    <div class="col-md-12 text-center" style="margin-top: 1%;" id="grafico_sala_maquina" >
+
+                    </div>
+                </div>
+
+                <hr style="background-color: black;height: 5px;">
+                <h4 style="text-align: center;">Demanda Reativa</h4>
+                <div class="row">
+                    <div class="col-md-12 text-center" style="margin-top: 1%;" id="grafico_demanda_reativa" >
+
+                    </div>
+                </div>
+                <hr style="background-color: black;height: 5px;">
+                <h4 style="text-align: center;">Consumo</h4>
+                <div class="row">
+                    <div class="col-md-12 text-center" style="margin-top: 1%;" id="grafico_consumo" >
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><br>
+    <br> 
+    <script>
+        let anoDiario = String({{ano_diario | safe}});
+        let mesDiario = String({{mes_diario | safe}});
+        let diaDiario = String({{dia_diario | safe}});
+
+        let mostrarValoresAtuais = String({{mostrar_valores_atuais | safe}});
+
+        if (mesDiario.length < 2){
+            mesDiario = '0'+mesDiario;
+        }
+
+        if (diaDiario.length < 2){
+            diaDiario = '0'+diaDiario;
+        }
+
+        novoFormatoRelatorio = "{{novo_formato_relatorio}}";
+        if (novoFormatoRelatorio == "True"){
+            novoFormatoRelatorio = true;
+        }else{
+            novoFormatoRelatorio = false;
+        }
+
+        let inputDataHoje = document.getElementById('data_hoje');
+        inputDataHoje.value = anoDiario+'-'+mesDiario+'-'+diaDiario;
+
+        let dataHojeString =  anoDiario + "-" + mesDiario + "-" + diaDiario;
+        let dataHoje = new Date(dataHojeString);
+        
+        hojeSemana = dataHoje.getDay();
+
+
+        let consumoEnergiaHoje = Number({{consumo_energia_hoje | safe}});
+        let consumoEnergiaTexto = document.getElementById('consumo_energia_texto');
+        let consumoEnergiaTotalHoje = 0
+
+        let fatorPotenciaHoje = Number({{fator_potencia_hoje | safe}});
+        let fatorPotenciaTexto = document.getElementById('fator_potencia_texto');
+        
+        let demandaAtivaHoje = Number({{demanda_ativa_hoje | safe}});
+        let demandaAtivaTexto = document.getElementById('demanda_ativa_texto');
+        demandaAtivaTexto.innerText = demandaAtivaHoje.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kW"
+        
+        let salaMaquinaHoje = Number({{sala_maquina_hoje | safe}});
+        let salaMaquinaTexto = document.getElementById('sala_maquina_texto ');
+        salaMaquinaTexto.innerText = salaMaquinaHoje.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kW"
+
+        let demandaReativaHoje = Number({{demanda_reativa_hoje | safe}});
+        let demandaReativaTexto = document.getElementById('demanda_reativa_texto');
+        demandaReativaTexto.innerText = demandaReativaHoje.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kVAr"
+
+        let consumoForaPontaCapacitivoMensal = 0;
+        let consumoForaPontaIndutivoMensal = 0;
+        let consumoPontaMensal = 0;
+
+
+        if (mostrarValoresAtuais == "0"){
+            demandaAtivaTexto.style.visibility = 'hidden';      // Hide
+            salaMaquinaTexto.style.visibility = 'hidden';      // Hide
+            demandaReativaTexto.style.visibility = 'hidden';      // Hide
+
+            document.getElementById("demanda_ativa_legenda").style.visibility = 'hidden';
+            document.getElementById("sala_maquina_legenda").style.visibility = 'hidden';
+            document.getElementById("demanda_reativa_legenda").style.visibility = 'hidden';
+        }
+
+        // RECEBENDO DADOS GRAFICOS
+
+        let demandaAtivaValoresHoje = {{demanda_ativa_valores_hoje | safe}};
+        let demandaAtivaHorasHoje = {{demanda_ativa_horas_hoje | safe}};
+        let demandaAtivaDatasHoje = {{demanda_ativa_datas_hoje | safe}};
+        x = 0;
+        let demandaAtivaRelatorioHoje = new Array();
+        for( demanda of demandaAtivaValoresHoje){
+            demandaAtivaRelatorioHoje [x] = {
+                valor: Number(demandaAtivaValoresHoje[x]) , hora: demandaAtivaHorasHoje[x], data:demandaAtivaDatasHoje[x]
+            };
+            x++;
+        }
+
+        console.log('demandaAtivaRelatorioHoje',demandaAtivaRelatorioHoje);
+
+        let salaMaquinaValoresHoje = {{sala_maquina_valores_hoje | safe}};
+        let salaMaquinaHorasHoje = {{sala_maquina_horas_hoje | safe}};
+        let salaMaquinaDatasHoje = {{sala_maquina_datas_hoje | safe}};
+        x = 0;
+        let salaMaquinaRelatorioHoje = new Array();
+        for( demanda of salaMaquinaValoresHoje){
+            salaMaquinaRelatorioHoje [x] = {
+                valor: Number(salaMaquinaValoresHoje[x]) , hora: salaMaquinaHorasHoje[x], data:salaMaquinaDatasHoje[x]
+            };
+            x++;
+        }
+
+
+        let demandaReativaValoresHoje = {{demanda_reativa_valores_hoje | safe}};
+        let demandaReativaHorasHoje = {{demanda_reativa_horas_hoje | safe}};
+        let demandaReativaDatasHoje = {{demanda_reativa_datas_hoje | safe}};
+        x = 0;
+        let demandaReativaRelatorioHoje = new Array();
+        for( demanda of demandaReativaValoresHoje){
+            demandaReativaRelatorioHoje [x] = {
+                valor: Number(demandaReativaValoresHoje[x]) , hora: demandaReativaHorasHoje[x], data:demandaReativaDatasHoje[x]
+            };
+            x++;
+        }
+
+        let fatorPotenciaValoresHoje = {{fator_potencia_valores_hoje | safe}};
+        let fatorPotenciaHorasHoje = {{fator_potencia_horas_hoje | safe}};
+        let fatorPotenciaDatasHoje = {{fator_potencia_datas_hoje | safe}};
+        x = 0;
+        let fatorPotenciaRelatorioHoje = new Array();
+        for( fator of fatorPotenciaValoresHoje){
+            fatorPotenciaRelatorioHoje [x] = {
+                valor: Number(fatorPotenciaValoresHoje[x]) , hora: fatorPotenciaHorasHoje[x], data:fatorPotenciaDatasHoje[x]
+            };
+            x++;
+        }
+
+        let consumoValoresHoje = {{consumo_valores_hoje | safe}};
+        let consumoHorasHoje = {{consumo_horas_hoje | safe}};
+        let consumoDatasHoje = {{consumo_datas_hoje | safe}};
+        x = 0;
+        let consumoRelatorioHoje = new Array();
+        for( consumo of consumoValoresHoje){
+            consumoRelatorioHoje [x] = {
+                valor: Number(consumoValoresHoje[x]), hora: consumoHorasHoje[x], data:consumoDatasHoje[x]
+            };
+            x++;
+        }
+        
+        let consumoAcumuladoValores = {{consumo_acumulado_valores | safe}};
+        let consumoAcumuladoHoras = {{consumo_acumulado_horas | safe}};
+        let consumoAcumuladoDias = {{consumo_acumulado_dias | safe}};
+        let consumoAcumuladoMeses = {{consumo_acumulado_meses | safe}};
+        x = 0;
+        let consumoRelatorioAcumulado = new Array();
+        for( consumo_val of consumoAcumuladoValores){
+            consumoRelatorioAcumulado [x] = {
+                valor: Number(consumoAcumuladoValores[x]) , hora: consumoAcumuladoHoras[x], dia: Number(consumoAcumuladoDias[x]), mes: Number(consumoAcumuladoMeses[x])
+            };
+            x++;
+        }
+
+        let demandaAtivaAcumuladaValores = {{demanda_ativa_acumulada_valores | safe}};
+        let demandaAtivaAcumuladaHoras = {{demanda_ativa_acumulada_horas | safe}};
+        let demandaAtivaAcumuladaDias = {{demanda_ativa_acumulada_dias | safe}};
+        let demandaAtivaAcumuladaMeses = {{demanda_ativa_acumulada_meses | safe}};
+        x = 0;
+        let demandaAtivaRelatorioAcumulado = new Array();
+        for( demanda_val of demandaAtivaAcumuladaValores){
+            demandaAtivaRelatorioAcumulado [x] = {
+                valor: Number(demandaAtivaAcumuladaValores[x]) , hora: demandaAtivaAcumuladaHoras[x], dia: Number(demandaAtivaAcumuladaDias[x]), mes: Number(demandaAtivaAcumuladaMeses[x])
+            };
+            x++;
+        }
+        console.log("demandaAtivaAcumulada", demandaAtivaRelatorioAcumulado);
+
+        // Para limitar casas decimais no gráfico
+        for( objeto of consumoRelatorioHoje){
+            objeto.valor = objeto.valor.toFixed(2);
+        }
+        
+        // GRÁFICOS
+
+        // Demanda ativa
+
+        var valoresDemandaAtivaHoje = new Array();
+        var legendasDemandaAtivaHoje = new Array();
+
+        for (let contador = 0; contador < demandaAtivaRelatorioHoje.length; contador++){
+            valoresDemandaAtivaHoje.push(demandaAtivaRelatorioHoje[contador].valor);
+            
+            if (demandaAtivaRelatorioHoje[contador].hora == "00:00"){
+                legendasDemandaAtivaHoje.push(new Date("1970/02/03 " + demandaAtivaRelatorioHoje[contador].hora + ":00").getTime()- 10801000);
+            }
+            else{
+                legendasDemandaAtivaHoje.push(new Date("1970/02/02 " + demandaAtivaRelatorioHoje[contador].hora + ":00").getTime()- 10800000);
+            }
+        }
+
+        var optionsDemandaAtivaHoje = {
+        series: [{
+            data: valoresDemandaAtivaHoje
+        }],
+        chart: {
+            locales: [{
+                "name": "br",
+                "options": {
+                    "months": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                    "shortMonths": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+                    "days": ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+                    "shortDays": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+                    "toolbar": {
+                        "exportToSVG": "Download SVG",
+                        "exportToPNG": "Download PNG",
+                        "menu": "Menu",
+                        "selection": "Selection",
+                        "selectionZoom": "Selection Zoom",
+                        "zoomIn": "Zoom In",
+                        "zoomOut": "Zoom Out",
+                        "pan": "Panning",
+                        "reset": "Reset Zoom"
+                    }
+                }
+            }],
+        defaultLocale: "br",
+        height: 250,
+        type: 'line',
+        zoom: {
+            type: 'x',
+            enabled: true,
+            autoScaleYaxis: false
+        },
+        },
+        dataLabels: {
+        enabled: false
+        },
+        stroke: {
+        curve: 'straight'
+        },
+        grid: {
+        row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.03
+        },
+        },
+        xaxis: {
+            categories: legendasDemandaAtivaHoje,
+            type: 'datetime',
+            labels: {
+                show: true,
+                style: {
+                    colors:"white"
+                },
+                datetimeFormatter: {
+                    year: 'yyyy',
+                    month: 'yy \'MMM',
+                    day: 'dd MMM',
+                    hour: 'HH:mm'
+                },
+            }
+        },
+        yaxis: {
+            labels: {
+                style: {
+                colors:"white"
+                }
+            }
+        },
+        tooltip:{
+            theme:'dark',
+            x: {
+                format: "HH:mm"
+            }
+        },
+        };
+
+        var chartDemandaAtivaHoje = new ApexCharts(document.querySelector("#grafico_demanda_ativa_hoje"), optionsDemandaAtivaHoje);
+        chartDemandaAtivaHoje.render();
+
+        //Sala de maquinas
+        var valoresSalaMaquinaHoje = new Array();
+        var legendasSalaMaquinaHoje = new Array();
+
+        for (let contador = 0; contador < salaMaquinaRelatorioHoje.length; contador++){
+            valoresSalaMaquinaHoje.push(salaMaquinaRelatorioHoje[contador].valor);
+            legendasSalaMaquinaHoje.push(new Date("1970/02/02 " + salaMaquinaRelatorioHoje[contador].hora + ":00").getTime()- 10800000);
+        }
+
+        var optionsSalaMaquinaHoje = {
+        series: [{
+            data: valoresSalaMaquinaHoje
+        }],
+        chart: {
+            locales: [{
+                "name": "br",
+                "options": {
+                    "months": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                    "shortMonths": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+                    "days": ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+                    "shortDays": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+                    "toolbar": {
+                        "exportToSVG": "Download SVG",
+                        "exportToPNG": "Download PNG",
+                        "menu": "Menu",
+                        "selection": "Selection",
+                        "selectionZoom": "Selection Zoom",
+                        "zoomIn": "Zoom In",
+                        "zoomOut": "Zoom Out",
+                        "pan": "Panning",
+                        "reset": "Reset Zoom"
+                    }
+                }
+            }],
+        defaultLocale: "br",
+        height: 250,
+        type: 'line',
+        zoom: {
+            type: 'x',
+            enabled: true,
+            autoScaleYaxis: false
+        },
+        },
+        dataLabels: {
+        enabled: false
+        },
+        stroke: {
+        curve: 'straight'
+        },
+        grid: {
+        row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.03
+        },
+        },
+        xaxis: {
+            categories: legendasSalaMaquinaHoje,
+            type: 'datetime',
+            labels: {
+                show: true,
+                style: {
+                    colors:"white"
+                },
+                datetimeFormatter: {
+                    year: 'yyyy',
+                    month: 'yy \'MMM',
+                    day: 'dd MMM',
+                    hour: 'HH:mm'
+                },
+            }
+        },
+        yaxis: {
+            labels: {
+                show: true,
+                style: {
+                colors:"white"
+                },
+                formatter: function (val) {
+                    return val.toLocaleString('pt-BR',{ maximumFractionDigits: 1});
+                },
+            }
+        },
+        tooltip:{
+            theme:'dark',
+            x: {
+                format: "HH:mm"
+            }
+        },
+        };
+
+        var chartSalaMaquinaHoje = new ApexCharts(document.querySelector("#grafico_sala_maquina_hoje"), optionsSalaMaquinaHoje);
+        chartSalaMaquinaHoje.render();
+
+
+        // Demanda reativa
+
+        var valoresDemandaReativaHoje = new Array();
+        var legendasDemandaReativaHoje = new Array();
+
+        for (let contador = 0; contador < demandaReativaRelatorioHoje.length; contador++){
+            valoresDemandaReativaHoje.push(demandaReativaRelatorioHoje[contador].valor);
+
+            if (demandaReativaRelatorioHoje[contador].hora == "00:00"){
+                legendasDemandaReativaHoje.push(new Date("1970/02/03 " + demandaReativaRelatorioHoje[contador].hora + ":00").getTime()- 10801000);
+            }
+            else{
+                legendasDemandaReativaHoje.push(new Date("1970/02/02 " + demandaReativaRelatorioHoje[contador].hora + ":00").getTime()- 10800000);
+            }
+        }
+
+
+        var optionsDemandaReativaHoje = {
+        series: [{
+            data: valoresDemandaReativaHoje
+        }],
+        chart: {
+        locales: [{
+                "name": "br",
+                "options": {
+                    "months": ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"],
+                    "shortMonths": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
+                    "days": ["Domingo", "Segunda", "Terça", "Quarta", "Quinta", "Sexta", "Sábado"],
+                    "shortDays": ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"],
+                    "toolbar": {
+                        "exportToSVG": "Download SVG",
+                        "exportToPNG": "Download PNG",
+                        "menu": "Menu",
+                        "selection": "Selection",
+                        "selectionZoom": "Selection Zoom",
+                        "zoomIn": "Zoom In",
+                        "zoomOut": "Zoom Out",
+                        "pan": "Panning",
+                        "reset": "Reset Zoom"
+                    }
+                }
+            }],
+        defaultLocale: "br",
+        height: 250,
+        type: 'line',
+        zoom: {
+            type: 'x',
+            enabled: true,
+            autoScaleYaxis: false
+        },
+        },
+        dataLabels: {
+        enabled: false
+        },
+        stroke: {
+        curve: 'straight'
+        },
+        grid: {
+        row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.03
+        },
+        },
+        xaxis: {
+            categories: legendasDemandaReativaHoje,
+            type: 'datetime',
+            labels: {
+                show: true,
+                style: {
+                    colors:"white"
+                },
+                datetimeFormatter: {
+                    year: 'yyyy',
+                    month: 'yy \'MMM',
+                    day: 'dd MMM',
+                    hour: 'HH:mm'
+                },
+            }
+        },
+        yaxis: {
+            labels: {
+                style: {
+                colors:"white"
+                }
+            }
+        },
+        tooltip:{
+            theme:'dark',
+            x: {
+                format: "HH:mm"
+            }
+        },
+        };
+
+        var chartDemandaReativaHoje = new ApexCharts(document.querySelector("#grafico_demanda_reativa_hoje"), optionsDemandaReativaHoje);
+        chartDemandaReativaHoje.render();
+
+
+        // Consumo
+
+        var valoresConsumoHoje = new Array()
+        var legendasConsumoHoje = [
+            '1h','2h','3h','4h','5h','6h','7h','8h','9h','10h','11h','12h',
+            '13h','14h','15h','16h','17h','18h','19h','20h','21h','22h','23h','00h'
+        ]
+
+        if (novoFormatoRelatorio){
+
+            consumoRelatorioHoje = new Array();
+            
+            for (let indice_hora_consumo_diario = 100; indice_hora_consumo_diario < 2500; indice_hora_consumo_diario+=100){
+                consumo_por_hora = 0;
+                indice_legenda = (indice_hora_consumo_diario/100) - 1; 
+
+                demandas = demandaAtivaRelatorioHoje.filter(function (demandaAtivaRelatorioHoje) {
+                    return ( parseInt(demandaAtivaRelatorioHoje.hora.replace(':', '')) > (indice_hora_consumo_diario - 100) && parseInt(demandaAtivaRelatorioHoje.hora.replace(':', '')) <= (indice_hora_consumo_diario) );
+                });
+
+                for (demanda of demandas){
+                    consumo_por_hora +=demanda.valor;            
+                }
+
+                if (indice_hora_consumo_diario == 2400){
+                    demandas = demandaAtivaRelatorioHoje.filter(function (demandaAtivaRelatorioHoje) {
+                        return ( parseInt(demandaAtivaRelatorioHoje.hora.replace(':', '')) == 0);
+                    });
+
+                    for (demanda of demandas){
+                        consumo_por_hora +=demanda.valor;            
+                    }
+                }
+                valoresConsumoHoje.push(consumo_por_hora/4);
+                consumoRelatorioHoje.push({valor: consumo_por_hora/4, hora: legendasConsumoHoje[indice_legenda]});
+            }
+
+            console.log('valoresConsumoHoje', valoresConsumoHoje);
+        }else{
+            for (let contador = 0; contador < legendasConsumoHoje.length; contador++){
+                if (consumoRelatorioHoje[contador] && consumoRelatorioHoje[contador+1]){
+                    valoresConsumoHoje.push((consumoRelatorioHoje[contador+1].valor) - (consumoRelatorioHoje[contador].valor));
+                }else{
+                    valoresConsumoHoje.push(0);
+                }
+            }
+        }
+
+        var optionsConsumoHoje = {
+            series: [{
+            name: 'Valores diários',
+            data: valoresConsumoHoje
+            }],
+            chart: {
+            height: 250,
+            type: 'bar',
+            },
+            plotOptions: {
+            bar: {
+                borderRadius: 10,
+                dataLabels: {
+                position: 'top', // top, center, bottom
+                },
+            }
+            },
+            dataLabels: {
+            enabled: true,
+            formatter: function (val) {
+                return val.toLocaleString('pt-BR',{ maximumFractionDigits: 2});
+            },
+            offsetY: -20,
+            style: {
+                fontSize: '0px',
+                colors: ["white"]
+            }
+            },
+            
+            xaxis: {
+            categories: legendasConsumoHoje,
+            position: 'bottom',
+            axisBorder: {
+                show: false
+            },
+            axisTicks: {
+                show: false
+            },
+            tooltip: {
+                enabled: false
+            },
+            labels: {
+                    style: {
+                    colors:"white",
+                    fontSize:"8px"
+                    }
+                }
+            },
+            yaxis: {
+            axisBorder: {
+                show: true
+            },
+            axisTicks: {
+                show: false,
+            },
+            labels: {
+                show: true,
+                style: {
+                    colors:"white"
+                },
+                formatter: function (val) {
+                return val.toLocaleString('pt-BR',{ maximumFractionDigits: 2});
+                }
+            }
+            
+            },
+            title: {
+                floating: true,
+                offsetY: 330,
+                align: 'center',
+                style: {
+                    color: 'white'
+                }
+            },
+            tooltip:{
+                theme:'dark'
+            }
+        };
+
+        var chartConsumoHoje = new ApexCharts(document.querySelector("#grafico_consumo_hoje"), optionsConsumoHoje);
+        chartConsumoHoje.render();
+
+        // Consumo Acumulado
+
+        var valoresConsumoAcumulado = new Array();
+        var legendasConsumoAcumulado = new Array();
+        var consumosMensais = new Array();
+
+        if (novoFormatoRelatorio){
+            let mesPosterior = mesDiario;
+            let diaAtual = 1;
+            while (mesPosterior == mesDiario){
+
+                foraPontaCapacitivoDiaAtual = 0;
+                foraPontaIndutivoDiaAtual = 0;
+                pontaDiaAtual = 0;
+                totalDiaAtual = 0;
+
+                diaString = String(diaAtual);
+                if (diaString.length < 2){
+                    diaString = '0'+diaString;
+                }
+
+                dataDiaAtualString =  anoDiario + "-" + mesDiario + "-" + diaString +"T03:00:00";
+                dataDiaAtual = new Date(dataDiaAtualString);
+                mesAtual = (dataDiaAtual.getMonth() + 1);
+
+                diaAtualSemana = dataDiaAtual.getDay();
+
+                dataDiaPosterior = new Date(dataDiaAtualString);
+                // Add 1 Day
+                dataDiaPosterior.setDate(dataDiaAtual.getDate() + 1)
+
+
+                diaPosterior = dataDiaPosterior.getDate();
+
+                
+                mesPosterior = (dataDiaPosterior.getMonth() + 1);
+                
+                console.log('mesAtual',mesAtual, 'diaAtual', diaAtual);
+                console.log('mesPosterior',mesPosterior, 'diaPosterior', diaPosterior);
+
+
+                demandasDoDia =  demandaAtivaRelatorioAcumulado.filter(function (demandaAtivaRelatorioAcumulado) {
+                    return ( demandaAtivaRelatorioAcumulado.dia == diaAtual || ( demandaAtivaRelatorioAcumulado.dia == diaPosterior &&  demandaAtivaRelatorioAcumulado.mes == mesPosterior && demandaAtivaRelatorioAcumulado.hora == "00:00") );
+                });
+
+                for (let indiceHoraConsumoDiaAtual = 100; indiceHoraConsumoDiaAtual < 2500; indiceHoraConsumoDiaAtual+=100){
+                    consumoPorHora = 0;
+
+                    demandasDaHora = demandasDoDia.filter(function (demandasDoDia) {
+                        return ( parseInt(demandasDoDia.hora.replace(':', '')) > (indiceHoraConsumoDiaAtual - 100) && parseInt(demandasDoDia.hora.replace(':', '')) <= (indiceHoraConsumoDiaAtual) );
+                    });
+
+                    for (demanda of demandasDaHora){
+                        consumoPorHora +=demanda.valor;            
+                    }
+
+                    if (indiceHoraConsumoDiaAtual == 2400){
+                        demandas0h = demandasDoDia.filter(function (demandasDoDia) {
+                            return ( parseInt(demandasDoDia.hora.replace(':', '')) == 0 && demandasDoDia.dia == diaPosterior);
+                        });
+
+                        for (demanda of demandas0h){
+                            consumoPorHora +=demanda.valor;            
+                        }
+                    }
+                    
+                    //Fora de ponta capacitivo
+                    if (indiceHoraConsumoDiaAtual > 0 && indiceHoraConsumoDiaAtual <= 600){ 
+                        foraPontaCapacitivoDiaAtual += consumoPorHora/4;
+                    }
+
+                    //Fora de ponta indutivo
+                    if ((indiceHoraConsumoDiaAtual > 600 &&  indiceHoraConsumoDiaAtual <= 1800) || (indiceHoraConsumoDiaAtual > 2100 &&  indiceHoraConsumoDiaAtual <= 2400)){ 
+                        foraPontaIndutivoDiaAtual += consumoPorHora/4;
+                    }
+
+                    //Ponta (somente dias de semana) Indutivo (Final de semana)
+                    if (indiceHoraConsumoDiaAtual > 1800 &&  indiceHoraConsumoDiaAtual <= 2100){ 
+                        if (diaAtualSemana == 5 || diaAtualSemana == 6){
+                            foraPontaIndutivoDiaAtual += consumoPorHora/4;
+                        }else{
+                            pontaDiaAtual += consumoPorHora/4;
+                        }
+                    }
+
+                    totalDiaAtual += consumoPorHora/4;
+                
+                }
+
+                if (demandasDoDia.length > 0){
+                    valoresConsumoAcumulado.push(totalDiaAtual);
+                    legendasConsumoAcumulado.push(diaString);
+                    
+                    consumosMensais.push({dia:diaAtual, foraPontaIndutivo:foraPontaIndutivoDiaAtual, foraPontaCapacitivo: foraPontaCapacitivoDiaAtual, ponta: pontaDiaAtual, total: totalDiaAtual })
+                }
+
+                diaAtual++;
+            }
+
+            //Consumo por períodos mensal (calculados no backend)
+            consumoForaPontaCapacitivoMensal = consumosMensais.reduce(function(sum, current) {return sum + current.foraPontaCapacitivo}, 0); 
+            consumoForaPontaIndutivoMensal = consumosMensais.reduce(function(sum, current) {return sum + current.foraPontaIndutivo}, 0); 
+            consumoPontaMensal = consumosMensais.reduce(function(sum, current) {return sum + current.ponta}, 0); 
+        }else{
+            for (let contador = 0; contador < consumoRelatorioAcumulado.length; contador++){
+                valoresConsumoAcumulado.push(consumoRelatorioAcumulado[contador].valor);
+                legendasConsumoAcumulado.push(String(consumoRelatorioAcumulado[contador].dia)+'/'+String(consumoRelatorioAcumulado[contador].mes));
+            }
+
+            valoresConsumoAcumulado.push((consumoRelatorioHoje[consumoRelatorioHoje.length -1].valor) - (consumoRelatorioHoje[0].valor));
+            legendasConsumoAcumulado.push(diaDiario+'/'+mesDiario);
+
+            //Consumo por períodos mensal (calculados no backend)
+            consumoForaPontaCapacitivoMensal = Number("{{consumo_fora_ponta_capacitivo_mensal}}");
+            consumoForaPontaIndutivoMensal = Number("{{consumo_fora_ponta_indutivo_mensal}}");
+            consumoPontaMensal = Number("{{consumo_ponta_mensal}}");
+        }
+
+        console.log('consumosMensais',consumosMensais);
+        
+        let consumoEnergiaMensalTexto = document.getElementById('consumo_energia_mensal_texto');
+        let consumoMensalAcumulado = 0;
+
+        for (let contador = 0; contador < valoresConsumoAcumulado.length; contador++){
+            consumoMensalAcumulado+= (valoresConsumoAcumulado[contador]);
+        }
+
+        consumoEnergiaMensalTexto.innerText = (consumoMensalAcumulado).toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + ' kWh';
+
+        var optionsConsumoAcumulado = {
+            series: [{
+            name: 'Valores mensais',
+            data: valoresConsumoAcumulado
+            }],
+            chart: {
+            height: 250,
+            type: 'bar',
+            },
+            plotOptions: {
+            bar: {
+                borderRadius: 10,
+                dataLabels: {
+                position: 'top', // top, center, bottom
+                },
+            }
+            },
+            dataLabels: {
+            enabled: true,
+            formatter: function (val) {
+                return val.toLocaleString('pt-BR',{ maximumFractionDigits: 2});
+            },
+            offsetY: -20,
+            style: {
+                fontSize: '0px',
+                colors: ["white"]
+            }
+            },
+            
+            xaxis: {
+            categories: legendasConsumoAcumulado,
+            position: 'bottom',
+            axisBorder: {
+                show: false
+            },
+            axisTicks: {
+                show: false
+            },
+            tooltip: {
+                enabled: false
+            },
+            labels: {
+                style: {
+                colors:"white",
+                fontSize:"8px"
+                }
+            }
+            },
+            yaxis: {
+            axisBorder: {
+                show: true
+            },
+            axisTicks: {
+                show: false,
+            },
+            labels: {
+                show: true,
+                style: {
+                    colors:"white"
+                },
+                formatter: function (val) {
+                return val.toLocaleString('pt-BR',{ maximumFractionDigits: 2});
+                }
+            }
+            
+            },
+            title: {
+                floating: true,
+                offsetY: 330,
+                align: 'center',
+                style: {
+                    color: 'white'
+                }
+            },
+            tooltip:{
+                theme:'dark'
+            }
+        };
+
+        var chartConsumoAcumulado= new ApexCharts(document.querySelector("#grafico_consumo_energia_mensal"), optionsConsumoAcumulado);
+        chartConsumoAcumulado.render();
+
+
+
+        // Máximas por períodos
+        let foraPontaCapacitivo = {
+            fatorPotenciaValor:1, fatorPotenciaHora:"--:--", 
+            demandaAtivaValor:0, demandaAtivaHora:"--:--",
+            salaMaquinaValor:0, salaMaquinaHora:"--:--",
+            demandaReativaValor:0, demandaReativaHora:"--:--",
+            consumoValor:0, consumoHora:"--:--"
+        }
+
+        let foraPontaIndutivo = {
+            fatorPotenciaValor:1, fatorPotenciaHora:"--:--", 
+            demandaAtivaValor:0, demandaAtivaHora:"--:--",
+            salaMaquinaValor:0, salaMaquinaHora:"--:--",
+            demandaReativaValor:0, demandaReativaHora:"--:--",
+            consumoValor:0, consumoHora:"--:--"
+        }
+
+        let ponta = {
+            fatorPotenciaValor:1, fatorPotenciaHora:"--:--", 
+            demandaAtivaValor:0, demandaAtivaHora:"--:--",
+            salaMaquinaValor:0, salaMaquinaHora:"--:--",
+            demandaReativaValor:0, demandaReativaHora:"--:--",
+            consumoValor:0, consumoHora:"--:--"
+        }
+
+        for (demanda of demandaAtivaRelatorioHoje){
+            horaNumero = Number((demanda.hora).replace(':', ''));
+
+            //Fora de ponta capacitivo
+            if (horaNumero > 0 && horaNumero <= 600){ 
+                if (demanda.valor > foraPontaCapacitivo.demandaAtivaValor){
+                    foraPontaCapacitivo.demandaAtivaValor = demanda.valor;
+                    foraPontaCapacitivo.demandaAtivaHora = demanda.hora;
+                }
+            }
+
+            //Fora de ponta indutivo
+            if ((horaNumero > 600 &&  horaNumero <= 1800) || (horaNumero > 2100 &&  horaNumero <= 2359) || (horaNumero == 0) ){ 
+                if (demanda.valor > foraPontaIndutivo.demandaAtivaValor){
+                    foraPontaIndutivo.demandaAtivaValor = demanda.valor;
+                    foraPontaIndutivo.demandaAtivaHora = demanda.hora;
+                }
+            }
+
+            //Ponta (somente dias de semana) Indutivo (Final de semana)
+            if (horaNumero > 1800 &&  horaNumero <= 2100){ 
+                
+                if (hojeSemana == 5 || hojeSemana == 6){
+                    if (demanda.valor > foraPontaIndutivo.demandaAtivaValor){
+                        foraPontaIndutivo.demandaAtivaValor = demanda.valor;
+                        foraPontaIndutivo.demandaAtivaHora = demanda.hora;
+                    }
+                }else{
+                    if (demanda.valor > ponta.demandaAtivaValor){
+                        ponta.demandaAtivaValor = demanda.valor;
+                        ponta.demandaAtivaHora = demanda.hora;
+                    }
+                }
+            }
+        }
+
+        for (demanda of salaMaquinaRelatorioHoje){
+            horaNumero = Number((demanda.hora).replace(':', ''));
+
+            //Fora de ponta capacitivo
+            if (horaNumero > 0 && horaNumero <= 600){ 
+                if (demanda.valor > foraPontaCapacitivo.salaMaquinaValor){
+                    foraPontaCapacitivo.salaMaquinaValor = demanda.valor;
+                    foraPontaCapacitivo.salaMaquinaHora = demanda.hora;
+                }
+            }
+
+            //Fora de ponta indutivo
+            if ((horaNumero > 600 &&  horaNumero <= 1800) || (horaNumero > 2100 &&  horaNumero <= 2359) || (horaNumero == 0)){ 
+                if (demanda.valor > foraPontaIndutivo.salaMaquinaValor){
+                    foraPontaIndutivo.salaMaquinaValor = demanda.valor;
+                    foraPontaIndutivo.salaMaquinaHora = demanda.hora;
+                }
+            }
+
+            //Ponta (somente dias de semana) Indutivo (Final de semana)
+            if (horaNumero > 1800 &&  horaNumero <= 2100){ 
+                
+                if (hojeSemana == 5 || hojeSemana == 6){
+                    if (demanda.valor > foraPontaIndutivo.salaMaquinaValor){
+                        foraPontaIndutivo.salaMaquinaValor = demanda.valor;
+                        foraPontaIndutivo.salaMaquinaHora = demanda.hora;
+                    }
+                }else{
+                    if (demanda.valor > ponta.salaMaquinaValor){
+                        ponta.salaMaquinaValor = demanda.valor;
+                        ponta.salaMaquinaHora = demanda.hora;
+                    }
+                }
+            }
+        }
+
+        for (demanda of demandaReativaRelatorioHoje){
+            horaNumero = Number((demanda.hora).replace(':', ''));
+
+            //Fora de ponta capacitivo
+            if (horaNumero > 0 &&  horaNumero <= 600){ 
+                if (demanda.valor > foraPontaCapacitivo.demandaReativaValor){
+                    foraPontaCapacitivo.demandaReativaValor = demanda.valor;
+                    foraPontaCapacitivo.demandaReativaHora = demanda.hora;
+                }
+            }
+
+            //Fora de ponta indutivo
+            if ((horaNumero > 600 &&  horaNumero <= 1800) || (horaNumero > 2100 &&  horaNumero <= 2359) || (horaNumero == 0)){ 
+                if (demanda.valor > foraPontaIndutivo.demandaReativaValor){
+                    foraPontaIndutivo.demandaReativaValor = demanda.valor;
+                    foraPontaIndutivo.demandaReativaHora = demanda.hora;
+                }
+            }
+
+            //Ponta (somente dias de semana) Indutivo (Final de semana)
+            if (horaNumero > 1800 &&  horaNumero <= 2100){ 
+                
+                if (hojeSemana == 5 || hojeSemana == 6){
+                    if (demanda.valor > foraPontaIndutivo.demandaReativaValor){
+                        foraPontaIndutivo.demandaReativaValor = demanda.valor;
+                        foraPontaIndutivo.demandaReativaHora = demanda.hora;
+                    }
+                }else{
+                    if (demanda.valor > ponta.demandaReativaValor){
+                        ponta.demandaReativaValor = demanda.valor;
+                        ponta.demandaReativaHora = demanda.hora;
+                    }
+                }
+            }
+        }
+
+
+
+        if (novoFormatoRelatorio){
+            for (consumo of consumoRelatorioHoje){
+                horaNumero = Number((consumo.hora).replace('h', ''));
+
+                //Fora de ponta capacitivo
+                if (horaNumero > 0 && horaNumero <= 6){ 
+                    foraPontaCapacitivo.consumoValor += consumo.valor;
+                }
+
+                //Fora de ponta indutivo 1
+                if (horaNumero > 6 &&  horaNumero <= 18){ 
+                    foraPontaIndutivo.consumoValor += consumo.valor;
+                }
+
+                //Fora de ponta indutivo 2
+                if ((horaNumero > 21 &&  horaNumero < 24) ||(horaNumero == 0)){ 
+                    foraPontaIndutivo.consumoValor += consumo.valor;
+                }
+
+                //Ponta (somente dias de semana) Indutivo (Final de semana)
+                if (horaNumero > 18 &&  horaNumero <= 21){ 
+                    if (hojeSemana == 5 || hojeSemana == 6){
+                        foraPontaIndutivo.consumoValor += consumo.valor;
+                    }else{
+                        ponta.consumoValor += consumo.valor;
+                    }
+                }
+
+                consumoEnergiaTotalHoje += consumo.valor;
+            }
+
+
+        }else{
+            // PARTICULARIDADES DO CONSUMO, POIS NÃO É CONSIDERADO O PONTO MÁXIMO, MAS SIM A SOMA DE CADA PERÍODO
+            let arrayConsumoForaPontaCapacitivo = new Array(); //00h00 - 06h00
+            let arrayConsumoForaPontaIndutivo1 = new Array();  //06h00 - 18h00  
+            let arrayConsumoForaPontaIndutivo2 = new Array(); //21h00 - 23h59
+            let arrayConsumoPonta = new Array(); //18h00 - 21h00
+
+            for (consumo of consumoRelatorioHoje){
+                horaNumero = Number((consumo.hora).replace(':', ''));
+
+                //Fora de ponta capacitivo
+                if (horaNumero >= 0 && horaNumero <= 600){ 
+                    arrayConsumoForaPontaCapacitivo.push(consumo.valor);
+                }
+
+                //Fora de ponta indutivo 1
+                if (horaNumero > 600 &&  horaNumero <= 1800){ 
+                    arrayConsumoForaPontaIndutivo1.push(consumo.valor);
+                }
+
+                //Fora de ponta indutivo 2
+                if (horaNumero > 2100 &&  horaNumero <= 2359){ 
+                    arrayConsumoForaPontaIndutivo2.push(consumo.valor);
+                }
+
+                //Ponta
+                if (horaNumero > 1800 &&  horaNumero <= 2100){ 
+                    arrayConsumoPonta.push(consumo.valor);
+                }
+            }
+
+            foraPontaCapacitivo.consumoValor = (Number(arrayConsumoForaPontaCapacitivo[arrayConsumoForaPontaCapacitivo.length  - 1]) || 0 ) - (Number(arrayConsumoForaPontaCapacitivo[0]) || 0);
+            foraPontaIndutivo.consumoValor = (((arrayConsumoForaPontaIndutivo1[arrayConsumoForaPontaIndutivo1.length  - 1] || 0) - (arrayConsumoForaPontaCapacitivo[arrayConsumoForaPontaCapacitivo.length - 1] || 0)) + ((arrayConsumoForaPontaIndutivo2[arrayConsumoForaPontaIndutivo2.length  - 1] - arrayConsumoPonta[arrayConsumoPonta.length  - 1]) || 0));
+            ponta.consumoValor = (arrayConsumoPonta[arrayConsumoPonta.length  - 1] - arrayConsumoForaPontaIndutivo1[arrayConsumoForaPontaIndutivo1.length  - 1]);
+            
+            // Somando consumo diario ao mensal
+            consumoForaPontaCapacitivoMensal +=  (foraPontaCapacitivo.consumoValor || 0);
+            consumoForaPontaIndutivoMensal += (foraPontaIndutivo.consumoValor || 0);
+            consumoPontaMensal += (ponta.consumoValor || 0);
+
+            consumoEnergiaTotalHoje = ((consumoRelatorioHoje[consumoRelatorioHoje.length -1].valor) - (consumoRelatorioHoje[0].valor)).toLocaleString('pt-BR',{ maximumFractionDigits: 2})
+            
+        }
+
+        consumoEnergiaTexto.innerText = consumoEnergiaTotalHoje.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kWh";
+
+        // ESCREVENDO VALORES CALCULADOS E OBTIDOS
+        //CONSUMO
+        let foraPontaCapacitivoValorConsumo = document.getElementById("fora_ponta_capacitivo_valor_consumo");
+        let foraPontaCapacitivoHoraConsumo = document.getElementById("fora_ponta_capacitivo_hora_consumo");
+        let foraPontaIndutivoValorConsumo = document.getElementById("fora_ponta_indutivo_valor_consumo");
+        let foraPontaIndutivoHoraConsumo = document.getElementById("fora_ponta_indutivo_hora_consumo");
+        let pontaValorConsumo = document.getElementById("ponta_valor_consumo");
+        let pontaHoraConsumo = document.getElementById("ponta_hora_consumo");
+
+        if(foraPontaCapacitivo.consumoValor > 0){
+            foraPontaCapacitivoValorConsumo.innerText = foraPontaCapacitivo.consumoValor.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kWh"
+        }
+        
+        if(foraPontaIndutivo.consumoValor > 0){
+            foraPontaIndutivoValorConsumo.innerText = foraPontaIndutivo.consumoValor.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kWh"
+        }
+        
+        if(ponta.consumoValor > 0){
+            pontaValorConsumo.innerText = ponta.consumoValor.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kWh"
+        }
+
+        // CONSUMO MENSAL 
+        let foraPontaCapacitivoValorConsumoMensal = document.getElementById("fora_ponta_capacitivo_valor_consumo_mensal");
+        let foraPontaIndutivoValorConsumoMensal = document.getElementById("fora_ponta_indutivo_valor_consumo_mensal");
+        let pontaValorConsumoMensal = document.getElementById("ponta_valor_consumo_mensal");
+
+        foraPontaCapacitivoValorConsumoMensal.innerText = consumoForaPontaCapacitivoMensal.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kWh";
+        foraPontaIndutivoValorConsumoMensal.innerText = consumoForaPontaIndutivoMensal.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kWh";
+        pontaValorConsumoMensal.innerText = consumoPontaMensal.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kWh";
+
+        //DEMANDA ATIVA
+        let foraPontaCapacitivoValorDemandaAtiva = document.getElementById("fora_ponta_capacitivo_valor_demanda_ativa");
+        let foraPontaCapacitivoHoraDemandaAtiva = document.getElementById("fora_ponta_capacitivo_hora_demanda_ativa");
+        let foraPontaIndutivoValorDemandaAtiva = document.getElementById("fora_ponta_indutivo_valor_demanda_ativa");
+        let foraPontaIndutivoHoraDemandaAtiva = document.getElementById("fora_ponta_indutivo_hora_demanda_ativa");
+        let pontaValorDemandaAtiva = document.getElementById("ponta_valor_demanda_ativa");
+        let pontaHoraDemandaAtiva = document.getElementById("ponta_hora_demanda_ativa");
+
+        foraPontaCapacitivoValorDemandaAtiva.innerText = foraPontaCapacitivo.demandaAtivaValor.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kW"
+        foraPontaCapacitivoHoraDemandaAtiva.innerText = foraPontaCapacitivo.demandaAtivaHora
+
+        foraPontaIndutivoValorDemandaAtiva.innerText = foraPontaIndutivo.demandaAtivaValor.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kW"
+        foraPontaIndutivoHoraDemandaAtiva.innerText = foraPontaIndutivo.demandaAtivaHora
+
+        pontaValorDemandaAtiva.innerText = ponta.demandaAtivaValor.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kW"
+        pontaHoraDemandaAtiva.innerText = ponta.demandaAtivaHora
+        
+        //SALA DE MAQUINA
+        let foraPontaCapacitivoValorSalaMaquina = document.getElementById("fora_ponta_capacitivo_valor_sala_maquina");
+        let foraPontaCapacitivoHoraSalaMaquina = document.getElementById("fora_ponta_capacitivo_hora_sala_maquina");
+        let foraPontaIndutivoValorSalaMaquina = document.getElementById("fora_ponta_indutivo_valor_sala_maquina");
+        let foraPontaIndutivoHoraSalaMaquina = document.getElementById("fora_ponta_indutivo_hora_sala_maquina");
+        let pontaValorSalaMaquina  = document.getElementById("ponta_valor_sala_maquina");
+        let pontaHoraSalaMaquina = document.getElementById("ponta_hora_sala_maquina");
+
+        foraPontaCapacitivoValorSalaMaquina.innerText = foraPontaCapacitivo.salaMaquinaValor.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kW"
+        foraPontaCapacitivoHoraSalaMaquina.innerText = foraPontaCapacitivo.salaMaquinaHora
+
+        foraPontaIndutivoValorSalaMaquina.innerText = foraPontaIndutivo.salaMaquinaValor.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kW"
+        foraPontaIndutivoHoraSalaMaquina.innerText = foraPontaIndutivo.salaMaquinaHora
+
+        pontaValorSalaMaquina.innerText = ponta.salaMaquinaValor.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kW"
+        pontaHoraSalaMaquina.innerText = ponta.salaMaquinaHora
+
+        //DEMANDA REATIVA
+        let foraPontaCapacitivoValorDemandaReativa = document.getElementById("fora_ponta_capacitivo_valor_demanda_reativa");
+        let foraPontaCapacitivoHoraDemandaReativa = document.getElementById("fora_ponta_capacitivo_hora_demanda_reativa");
+        let foraPontaIndutivoValorDemandaReativa = document.getElementById("fora_ponta_indutivo_valor_demanda_reativa");
+        let foraPontaIndutivoHoraDemandaReativa = document.getElementById("fora_ponta_indutivo_hora_demanda_reativa");
+        let pontaValorDemandaReativa = document.getElementById("ponta_valor_demanda_reativa");
+        let pontaHoraDemandaReativa = document.getElementById("ponta_hora_demanda_reativa");
+
+        foraPontaCapacitivoValorDemandaReativa.innerText = foraPontaCapacitivo.demandaReativaValor.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kVAR"
+        foraPontaCapacitivoHoraDemandaReativa.innerText = foraPontaCapacitivo.demandaReativaHora
+
+        foraPontaIndutivoValorDemandaReativa.innerText = foraPontaIndutivo.demandaReativaValor.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kVAR"
+        foraPontaIndutivoHoraDemandaReativa.innerText = foraPontaIndutivo.demandaReativaHora
+
+        pontaValorDemandaReativa.innerText = ponta.demandaReativaValor.toLocaleString('pt-BR',{ maximumFractionDigits: 1}) + " kVAR"
+        pontaHoraDemandaReativa.innerText = ponta.demandaReativaHora
+
+
+    </script>
+</body>
+      
+</html>

@@ -1,14 +1,15 @@
-.body_main {
-  margin: 10% 2%;
+body {
+  margin: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-image: #8ec5ff;
+  background-image: radial-gradient(circle, #1a293e, #1f1f1f);
 }
-
 .grafico1,
 .grafico2 {
   height: 350px;
   width: 100vw;
   margin: 10px;
 }
-
 .grafico3,
 .grafico4,
 .grafico5 {
@@ -24,21 +25,18 @@
   justify-content: center;
   margin-top: 10px;
 }
-
 .graficos {
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 5px;
   background: linear-gradient(145deg, #041d29, #042231);
-  box-shadow: .5px 3px 6px #021219, .5px -0 3px #021219;
+  box-shadow: 6px 6px 12px #021219, -6px -6px 12px #021219;
   margin: 0 10px;
 }
-
 /* MobileFirst */
 
 @media screen and (max-width: 999px) {
-
   .graficos_eficiencia_comparativo,
   .graficos_adm_ganho_sat {
     display: flex;
@@ -51,7 +49,6 @@
     gap: 10px;
     margin-top: 10px;
   }
-
   .graficos_adm_ganho_sat {
     margin-top: 220px;
   }

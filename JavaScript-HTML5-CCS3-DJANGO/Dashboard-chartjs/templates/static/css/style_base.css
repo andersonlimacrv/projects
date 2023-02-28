@@ -1,13 +1,14 @@
 body {
   margin: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: #8ec5ff;
-  background-image: radial-gradient(circle, #1a293e, #1f1f1f);
+  background-image: radial-gradient(circle, #142d4f, #1f1f1f);
 }
+
 header {
   background-color: #04202e;
   box-shadow: 3px 3px 3px #000a, 2px 2px 2px #250202;
 }
+
 nav {
   color: #fff;
   display: flex;
@@ -16,12 +17,14 @@ nav {
   max-width: 1144px;
   margin: auto;
 }
+
 /* ---------------------------------------Inicio de estilização LOGO------------------------------------------------*/
 #logo {
   padding: 1rem;
   font-weight: 900;
   text-transform: uppercase;
 }
+
 /* ---------------------------------------Fim de estilização LOGO ------------------------------------------------*/
 .links {
   display: flex;
@@ -30,6 +33,7 @@ nav {
   gap: 10px;
   margin: 5px 0;
 }
+
 .links a {
   color: Gainsboro;
   text-decoration: none;
@@ -40,18 +44,22 @@ nav {
   -ms-transition: all 0.5s;
   -o-transition: all 0.5s;
 }
+
 .links a:hover {
   text-decoration: bold;
   color: #8ec5ff;
 }
+
 #btnMenu,
 #toggleMenu {
   display: none;
 }
+
 .containerMenu {
   font-size: 22px;
   display: none;
 }
+
 /* ---------------------------------------Inicio de estilização dos botões header ------------------------------------------------*/
 .btn {
   position: relative;
@@ -65,11 +73,13 @@ nav {
   border-radius: 0.5em;
   transition: 0.2s ease;
 }
+
 .text {
   font-size: 0.8em;
   color: white;
   z-index: 1;
 }
+
 .btn::before {
   position: absolute;
   content: "";
@@ -77,12 +87,11 @@ nav {
   left: -10%;
   width: 120%;
   height: 250%;
-  background-image: linear-gradient(
-    135deg,
-    rgba(142, 197, 255, 1) 0%,
-    rgb(12, 37, 38) 100%
-  );
+  background-image: linear-gradient(135deg,
+      rgba(142, 197, 255, 1) 0%,
+      rgb(12, 37, 38) 100%);
 }
+
 .btn::after {
   position: absolute;
   content: "";
@@ -92,6 +101,7 @@ nav {
   border-radius: 0.5em;
   background-color: #04202e;
 }
+
 .btn:hover.btn {
   transform: scale(1.1);
 }
@@ -99,13 +109,16 @@ nav {
 .btn:hover.btn::before {
   animation: turn_4810 1s infinite linear;
 }
+
 .btn:active.btn {
   transform: scale(1.05);
 }
+
 .btn:active.btn::before {
   transform: scale(1.05);
   animation: turn_4810 0.6s infinite linear;
 }
+
 @keyframes turn_4810 {
   0% {
     transform: rotate(deg);
@@ -115,8 +128,10 @@ nav {
     transform: rotate(360deg);
   }
 }
+
 /* ---------------------------------------FIM de estilização dos botões header ------------------------------------------------*/
 @media only screen and (max-width: 999px) {
+
   .containerMenu,
   .switch {
     display: block;
@@ -137,7 +152,8 @@ nav {
     -ms-transition: all 0.5s;
     -o-transition: all 0.5s;
   }
-  #btnMenu:checked ~ .links {
+
+  #btnMenu:checked~.links {
     left: 0;
   }
 }
@@ -154,6 +170,7 @@ nav {
   align-items: center;
   transition: 0.5s;
 }
+
 #toggleMenu::before {
   content: "";
   position: absolute;
@@ -162,8 +179,10 @@ nav {
   background-color: #fff;
   transition: 0.5s;
   transform: translateY(-10px);
-  box-shadow: 0 10px 0 #fff; /* Barra do meio */
+  box-shadow: 0 10px 0 #fff;
+  /* Barra do meio */
 }
+
 #toggleMenu::after {
   content: "";
   position: absolute;
@@ -173,18 +192,29 @@ nav {
   transition: 0.5s;
   transform: translateY(10px);
 }
+
 #toggleMenu.active {
   background-color: #3a0404;
   border-radius: 0.5rem;
 }
+
 #toggleMenu.active::before {
   transform: translateY(0) rotate(45deg);
   box-shadow: 0 0 0 #FFF;
 }
+
 #toggleMenu.active::after {
   transform: translateY(0)rotate(-45deg);
 }
+
 /* ---------------------------------------Inicio de estilização do Footer ------------------------------------------------*/
+footer {
+  margin-top: 10%;
+  width: 100%;
+  height: 100px;
+
+}
+
 :root {
   --link-size: 64px;
   --trans-props: all 0.3s ease;
@@ -193,7 +223,7 @@ nav {
 
 .wrapper {
   width: 100%;
-  height: 100vh;
+  height: auto;
 }
 
 .wrapper,
@@ -208,9 +238,9 @@ nav {
 
 .social-icon {
   display: flex;
-
   position: relative;
-  overflow: hidden; /* Trim branded overlays */
+  overflow: hidden;
+  /* Trim branded overlays */
 
   width: var(--link-size);
   height: var(--link-size);
@@ -226,12 +256,14 @@ nav {
 }
 
 .social-icon i {
-  margin: auto; /* Perfect centering thanks to parental flex */
+  margin: auto;
+  /* Perfect centering thanks to parental flex */
 
   font-size: 24px;
   color: hsl(212, 16%, 48%);
 
-  z-index: 1; /* Make sure icons will be on top */
+  z-index: 1;
+  /* Make sure icons will be on top */
 
   transition: var(--trans-props);
 }
@@ -261,14 +293,12 @@ nav {
 }
 
 .social-icon.instagram:after {
-  background-image: linear-gradient(
-    to bottom left,
-    #4f5bd5,
-    #962fbf,
-    #d62976,
-    #fa7e1e,
-    #feda75
-  );
+  background-image: linear-gradient(to bottom left,
+      #4f5bd5,
+      #962fbf,
+      #d62976,
+      #fa7e1e,
+      #feda75);
 }
 
 /*** Animations ***/

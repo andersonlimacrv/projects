@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible"
+            content="IE=edge" />
+      <meta name="viewport"
+            content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <link rel="stylesheet"
+            href="style.css" />
+      <script src="script.js"></script>
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
+            rel="stylesheet" />
+      <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css"
+            rel="stylesheet" />
+      <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <script src="https://www.gstatic.com/charts/loader.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+      <script src="https://cdnout.com/html2pdf.js"></script>
+</head>
+
+<body>
+      <div id="demanda_reativa_informacoes"
+           class="container">
+            <table>
+                  <tr>
+                        <td><img class="icons_potencia icon_capacitor"
+                                   src="{% static './img/capacitor.png'%}"
+                                   alt="resistor icon"></td>
+                        <td id="fora_ponta_capacitivo_label_demanda_reativa">Fora de ponta Capacitivo:</td>
+                        <td id="fora_ponta_capacitivo_valor_demanda_reativa">0 kW</td>
+                        <td id="fora_ponta_capacitivo_hora_demanda_reativa">--:--</td>
+                  </tr>
+                  <tr>
+                        <td><img class="icons_potencia icon_indutor"
+                                   src="{% static './img/indutor.png' %}"
+                                   alt="indutor icon"></td>
+                        <td id="fora_ponta_indutivo_label_demanda_reativa">Fora de ponta Indutivo:</td>
+                        <td id="fora_ponta_indutivo_valor_demanda_reativa">0 kW</td>
+                        <td id="fora_ponta_indutivo_hora_demanda_reativa">--:--</td>
+                  </tr>
+                  <tr>
+                        <td><img class="icons_potencia icon_resistor"
+                                   src="{% static './img/resistor.png' %}"
+                                   alt="capacitor icon"></td>
+                        <td id="ponta_label_demanda_reativa">Ponta:</td>
+                        <td id="ponta_valor_demanda_reativa">0 kW</td>
+                        <td id="ponta_hora_demanda_reativa">--:--</td>
+                  </tr>
+            </table>
+      </div>
+
+      <div id="demanda_reativa_informacoes"
+           style="width:auto !important; height: auto;text-align: center;"
+           class="col-md-12">
+            <div class="row">
+                  <div class="col-md-6 text-left">
+                        <label style="color: #56a8ff;font-size:15px;margin:0;padding:0">Fora de ponta Capacitivo</label><br>
+                        <label id="fora_ponta_capacitivo_valor_demanda_reativa"
+                               style="color: #007BFF;font-size:20px;margin:0;padding:0">0 kVAR</label><br>
+                        <h6 id="fora_ponta_capacitivo_hora_demanda_reativa"
+                            style="color: #56a8ff;margin:0;padding:0">--:--</h6>
+                  </div>
+                  <div class="col-md-6 text-left">
+                        <label style="color: #1AB394;font-size:15px;margin:0;padding:0">Fora de ponta Indutivo</label><br>
+                        <label id="fora_ponta_indutivo_valor_demanda_reativa"
+                               style="color: #1AB394;font-size:20px;margin:0;padding:0">0 kVAR</label><br>
+                        <h6 id="fora_ponta_indutivo_hora_demanda_reativa"
+                            style="color: #1AB394;margin:0;padding:0">--:--</h6>
+                  </div>
+                  <div class="col-md-6 text-left">
+                        <label style="color: #ED5565;font-size:15px;margin:0;padding:0">Ponta</label><br>
+                        <label id="ponta_valor_demanda_reativa"
+                               style="color: #ED5565;font-size:20px;margin:0;padding:0">0 kVAR</label><br>
+                        <h6 id="ponta_hora_demanda_reativa"
+                            style="color: #ED5565;margin:0;padding:0">--:--</h6>
+                  </div>
+            </div>
+      </div>
+
+      <!--  <div id="sala_maquina_informacoes"
+           style="width:auto !important; height: auto;text-align: center;"
+           class="col-md-12">
+            <div class="row">
+                  <div class="col-md-6 text-left">
+                        <label style="color: #56a8ff;font-size:15px;margin:0;padding:0">Fora de ponta Capacitivo</label><br>
+                        <label id="fora_ponta_capacitivo_valor_sala_maquina"
+                               style="color: #007BFF;font-size:20px;margin:0;padding:0">0 kW</label><br>
+                        <h6 id="fora_ponta_capacitivo_hora_sala_maquina"
+                            style="color: #56a8ff;margin:0;padding:0">--:--</h6>
+                  </div>
+                  <div class="col-md-6 text-left">
+                        <label style="color: #1AB394;font-size:15px;margin:0;padding:0">Fora de ponta Indutivo</label><br>
+                        <label id="fora_ponta_indutivo_valor_sala_maquina"
+                               style="color: #1AB394;font-size:20px;margin:0;padding:0">0 kW</label><br>
+                        <h6 id="fora_ponta_indutivo_hora_sala_maquina"
+                            style="color: #1AB394;margin:0;padding:0">--:--</h6>
+                  </div>
+                  <div class="col-md-6 text-left">
+                        <label style="color: #ED5565;font-size:15px;margin:0;padding:0">Ponta</label><br>
+                        <label id="ponta_valor_sala_maquina"
+                               style="color: #ED5565;font-size:20px;margin:0;padding:0">0 kW</label><br>
+                        <h6 id="ponta_hora_sala_maquina"
+                            style="color: #ED5565;margin:0;padding:0">--:--</h6>
+                  </div>
+            </div>
+      </div> -->
+      <!--     <div id="demanda_ativa_informacoes"
+           style="width:auto !important; height: auto;text-align: center;"
+           class="col-md-12">
+            <div class="row">
+                  <div class="col-md-6 text-left">
+                        <label style="color: #56a8ff;font-size:15px;margin:0;padding:0">Fora de ponta Capacitivo</label><br>
+                        <label id="fora_ponta_capacitivo_valor_demanda_ativa"
+                               style="color: #007BFF;font-size:20px;margin:0;padding:0">0 kW</label><br>
+                        <h6 id="fora_ponta_capacitivo_hora_demanda_ativa"
+                            style="color: #56a8ff;margin:0;padding:0">--:--</h6>
+                  </div>
+                  <div class="col-md-6 text-left">
+                        <label style="color: #1AB394;font-size:15px;margin:0;padding:0">Fora de ponta Indutivo</label><br>
+                        <label id="fora_ponta_indutivo_valor_demanda_ativa"
+                               style="color: #1AB394;font-size:20px;margin:0;padding:0">0 kW</label><br>
+                        <h6 id="fora_ponta_indutivo_hora_demanda_ativa"
+                            style="color: #1AB394;margin:0;padding:0">--:--</h6>
+                  </div>
+                  <div class="col-md-6 text-left">
+                        <label style="color: #ED5565;font-size:15px;margin:0;padding:0">Ponta</label><br>
+                        <label id="ponta_valor_demanda_ativa"
+                               style="color: #ED5565;font-size:20px;margin:0;padding:0">0 kW</label><br>
+                        <h6 id="ponta_hora_demanda_ativa"
+                            style="color: #ED5565;margin:0;padding:0">--:--</h6>
+                  </div>
+            </div>
+      </div> -->
+      <!--      <div id="consumo_energia_mensal_informacoes"
+           class="col-md-12">
+            <div class="row">
+                  <div class="col-md-6 text-left">
+                        <label style="color: #56a8ff;font-size:15px;margin:0;padding:0">Fora de ponta Capacitivo</label><br>
+                        <label id="fora_ponta_capacitivo_valor_consumo_mensal"
+                               style="color: #007BFF;font-size:20px;margin:0;padding:0">0 kWh</label><br>
+                        <h6 style="color: #56a8ff;margin:0;padding:0">{{mes_diario}}/{{ano_diario}}</h6>
+                  </div>
+                  <div class="col-md-6 text-left">
+                        <label style="color: #1AB394;font-size:15px;margin:0;padding:0">Fora de ponta Indutivo</label><br>
+                        <label id="fora_ponta_indutivo_valor_consumo_mensal"
+                               style="color: #1AB394;font-size:20px;margin:0;padding:0">0 kWh</label><br>
+                        <h6 style="color: #1AB394;margin:0;padding:0">{{mes_diario}}/{{ano_diario}}</h6>
+                  </div>
+                  <div class="col-md-6 text-left">
+                        <label style="color: #ED5565;font-size:15px;margin:0;padding:0">Ponta</label><br>
+                        <label id="ponta_valor_consumo_mensal"
+                               style="color: #ED5565;font-size:20px;margin:0;padding:0">0 kWh</label><br>
+                        <h6 style="color: #ED5565;margin:0;padding:0">{{mes_diario}}/{{ano_diario}}</h6>
+                  </div>
+            </div>
+      </div> -->
+</body>
+
+</html>
+
+<!--  Retirado do html, como estava antes;
+      <div id="consumo_informacoes" style="width:auto !important; height: auto;text-align: center;" class="col-md-12">
+      <div class="row">
+          <div class="col-md-6 text-left">
+              <label style="color: #56a8ff;font-size:15px;margin:0;padding:0">Fora de ponta Capacitivo</label><br>
+              <label id="fora_ponta_capacitivo_valor_consumo" style="color: #007BFF;font-size:20px;margin:0;padding:0">0 kWh</label><br>
+              <h6 id="fora_ponta_capacitivo_hora_consumo" style="color: #56a8ff;margin:0;padding:0">{{data_hoje}}</h6>
+          </div>
+          <div class="col-md-6 text-left">
+              <label style="color: #1AB394;font-size:15px;margin:0;padding:0">Fora de ponta Indutivo</label><br>
+              <label id="fora_ponta_indutivo_valor_consumo" style="color: #1AB394;font-size:20px;margin:0;padding:0">0 kWh</label><br>
+              <h6 id="fora_ponta_indutivo_hora_consumo" style="color: #1AB394;margin:0;padding:0">{{data_hoje}}</h6>
+          </div>
+          <div class="col-md-6 text-left">
+              <label style="color: #ED5565;font-size:15px;margin:0;padding:0">Ponta</label><br>
+              <label id="ponta_valor_consumo" style="color: #ED5565;font-size:20px;margin:0;padding:0">0 kWh</label><br>
+              <h6 id="ponta_hora_consumo" style="color: #ED5565;margin:0;padding:0">{{data_hoje}}</h6>
+          </div>
+      </div>
+  </div> -->

@@ -1,0 +1,83 @@
+#consumo_informacoes {
+	width: auto !important;
+	height: auto;
+	text-align: center;
+}
+
+#fora_ponta_capacitivo_label,
+#fora_ponta_capacitivo_label_mensal,
+#fora_ponta_capacitivo_hora_consumo,
+#fora_ponta_capacitivo_hora_consumo_mensal {
+	color: #56a8ff;
+	font-size: 12px;
+}
+
+#fora_ponta_capacitivo_valor_consumo,
+#fora_ponta_capacitivo_valor_consumo_mensal {
+	color: #56a8ff;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#fora_ponta_indutivo_label,
+#fora_ponta_indutivo_label_mensal,
+#fora_ponta_indutivo_hora_consumo,
+#fora_ponta_indutivo_hora_consumo_mensal {
+	color: #1ab394;
+	font-size: 12px;
+}
+
+#fora_ponta_indutivo_valor_consumo {
+	color: #1ab394;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#ponta_label,
+#ponta_hora_consumo {
+	color: #ed5565;
+	font-size: 12px;
+}
+
+#ponta_valor_consumo {
+	color: #ed5565;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.icons_potencia {
+	display: inline-block;
+	width: 25px;
+}
+
+.icon_capacitor {
+	filter: invert(72%) sepia(50%) saturate(5732%) hue-rotate(190deg) brightness(105%) contrast(102%);
+}
+
+.icon_indutor {
+	filter: invert(74%) sepia(60%) saturate(7207%) hue-rotate(136deg) brightness(103%) contrast(80%);
+}
+
+.icon_resistor {
+	filter: invert(64%) sepia(94%) saturate(5165%) hue-rotate(326deg) brightness(104%) contrast(86%);
+}
+
+.row {
+	border-collapse: collapse;
+}
+
+.row td,
+.row th {
+	border: 4px solid rgba(3, 3, 3, 0.025);
+	padding: 5px 8px;
+}
+
+.row th {
+	background-color: none;
+	color: #000;
+}
+
+.row td {
+	background-color: rgba(3, 3, 3, 0.025);
+	color: #000;
+}

@@ -1,0 +1,55 @@
+<!-- Retirado das linhas 258 à 293 do html do monitoramento geral 
+-->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script
+      type="application/javascript"
+      src="script.js"
+    ></script>
+  </head>
+  <body>
+      div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    {% for regime in regimes %}
+                        <div class="col-md-6 text-center" style="margin-top: 1%;">
+                            <div style="padding: 0; height: 100%;background-color: #262D47;" class="card  v-graph text-center;">
+                                <h2 style="text-align: center;"id="titulo_grafico_regime{{regime.id}}">Regime: {{regime.regime}}</h2>
+                                <div id="line{{regime.id}}" style="width:auto !important;height: 300px;"></div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <div class="col-md-6 text-center" style="margin-top: 1%;">
+                        <div style="padding: 0; height: 100%;background-color: #262D47;" class="card  v-graph text-center;">
+                            <h2 style="text-align: center;" id="titulo_grafico_condensacao">Condensação</h2>
+                            <div id="line_condensacao" style="width:auto !important;height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-md-6 text-center" style="margin-top: 1%;">
+                        <div style="padding: 0; height: 100%;background-color: #262D47;" class="card  v-graph text-center;">
+                            <div id="bar" style="width:auto !important;height: 300px;"></div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 text-center" style="margin-top: 1%;">
+                        <div style="padding: 0; height: 100%;background-color: #262D47;" class="card  v-graph text-center;">
+                            <div id="pot" style="width:auto !important;height: 300px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script></script>
+  </body>
+</html>

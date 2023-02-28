@@ -1,0 +1,29 @@
+@media print{
+	.machines,.btn,.btnCalc,.gRegime,#capacidadeNecessaria,#capacidadeDisponivel{
+		display:none;
+	}
+	.page-content{
+		background-color: white;
+	}
+	*,td,tr{
+		color: black !important;
+	}
+	.table-responsive{
+		width: 870px;
+		max-height:max-content;
+		overflow: auto;
+		display: contents;
+	}
+	#rectangle1{
+		background-color:#ffffff !important;
+	}
+	div{
+		flex-direction: column !important;
+		margin: auto;
+	}
+	.condensadorTable{
+		margin-top: 200px;
+	}
+
+
+}
