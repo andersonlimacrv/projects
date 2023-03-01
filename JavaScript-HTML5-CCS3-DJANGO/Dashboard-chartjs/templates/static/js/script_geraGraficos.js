@@ -8,7 +8,7 @@ function GeraGraficoCapacidadeCondensadores() {
                 0,
                 400
         );
-        gradientBlue.addColorStop(0, "#7D0EF0");
+        gradientBlue.addColorStop(0, "#01ECF3");
         gradientBlue.addColorStop(1, "#030320");
         const gradientRED = contextEficienciaEnergetica.createLinearGradient(
                 0,
@@ -54,7 +54,7 @@ function GeraGraficoCapacidadeCondensadores() {
                         maintainAspectRatio: false,
                         aspectRatio: 0.8,
                         hoverBorderWidth: 4,
-                        borderRadius: 2,
+                        borderRadius: 3,
                         borderWidth: 0.8,
                         plugins: {
                                 title: {
@@ -129,7 +129,7 @@ function GeraGraficoEficienciaCondensadores() {
                 0,
                 400
         );
-        gradientBlue.addColorStop(0, "#7D0EF0");
+        gradientBlue.addColorStop(0, "#01ECF3");
         gradientBlue.addColorStop(1, "#030320");
         const gradientRED = contextCapacidade.createLinearGradient(
                 0,
@@ -169,7 +169,7 @@ function GeraGraficoEficienciaCondensadores() {
                 data,
                 options: {
                         hoverBorderWidth: 4,
-                        borderRadius: 2,
+                        borderRadius: 3,
                         borderWidth: 0.8,
                         resposive: true,
                         maintainAspectRatio: false,
@@ -243,7 +243,7 @@ function GeraGraficoTBU() {
                 .getContext("2d");
 
         const gradient = contextGraficoTBU.createLinearGradient(0, 0, 0, 400);
-        gradient.addColorStop(0, "#6F93FA");
+        gradient.addColorStop(0, "#01ECF3");
         gradient.addColorStop(1, "#030320");
 
         const labels = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
@@ -270,7 +270,7 @@ function GeraGraficoTBU() {
                         maintainAspectRatio: false,
                         aspectRatio: 0.8,
                         hoverBorderWidth: 4,
-                        borderRadius: 2,
+                        borderRadius: 3,
                         borderWidth: 0.8,
                         plugins: {
                                 title: {
@@ -363,7 +363,7 @@ function GeraGraficoGanhoEnergéticoAr() {
                         maintainAspectRatio: false,
                         aspectRatio: 0.8,
                         hoverBorderWidth: 4,
-                        borderRadius: 2,
+                        borderRadius: 3,
                         borderWidth: 0.8,
                         plugins: {
                                 title: {
@@ -441,23 +441,23 @@ function GeraGraficoSaturacao() {
                                 data: [99, 33, 40, 15, 39, 22, 33, 55, 44, 99],
                                 label: "Saturação",
                                 backgroundColor: [
-                                        "#0EF02C",
-                                        "#1EFA6B",
-                                        "#1BE08B",
-                                        "#1BFACA",
-                                        "#11EDED",
-                                        "#11CFF0",
-                                        "#20AEFA",
-                                        "#1C74E0",
-                                        "#1E55FA",
-                                        "#131DED",
+                                        "#0E849C",
+                                        "#084E5C",
+                                        "#14B9DB",
+                                        "#154AE8",
+                                        "#11A4C2",
+                                        "#0560FD",
+                                        "#0BC8E3",
+                                        "#00FAD4",
+                                        "#0BE386",
+                                        "#0DFD51",
                                 ],
                                 borderColor: ["rgba(15,15,240,1)"],
                                 borderWidth: 0.8,
                                 hoverBackgroundColor: "rgba(15,15,123,.8)",
                                 hoverBorderColor: "rgba(255,255,255,.8)",
                                 hoverBorderWidth: 4,
-                                borderRadius: 2,
+                                borderRadius: 3,
                         },
                 ],
         };
